@@ -564,11 +564,9 @@ class Comment_Image_Reloaded {
 						$img_url_out = $img_url[$size];
 
 					} else {
-
-						$img_url['thumbnail'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'thumbnail');
-						$img_url['medium'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'medium');
-						$img_url['large'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'large');
-						$img_url['full'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'full');
+						foreach( get_intermediate_image_sizes() as $_size ){
+							$img_url[$_size] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], $_size);
+						}
 						add_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url',$img_url);
 						$img_url_out = $img_url[$size];
 
@@ -823,19 +821,31 @@ class Comment_Image_Reloaded {
 	}
 
 	public static function CI_reloaded_checkbox_hideall_render() {
+
+	$sizes = get_intermediate_image_sizes();
+	$html = '';
+	$all_sizes = array();
+	foreach($sizes as $size){
+		if($size == 'medium_large') continue;
+		
+		if ( in_array( $size, array('thumbnail', 'medium', 'full', 'large') ) ) {
+			$all_sizes['width']  = get_option( "{$size}_size_w" );
+			$all_sizes['height'] = get_option( "{$size}_size_h" );
+		} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
+			$all_sizes = array(
+				'width'  => $_wp_additional_image_sizes[ $size ]['width'],
+				'height' => $_wp_additional_image_sizes[ $size ]['height'],
+			);
+		}
+
+		$html .= '<input type="radio" id="radio_'.$size.'" name="CI_reloaded_settings[image_size]" value="'.$size.'"' . checked( $size, self::$options['image_size'], false ) . '/>';
+    	$html .= '<label for="radio_'.$size.'">' . $size . ' ( '.$all_sizes['width'] . 'x' . $all_sizes['height'] . ' )</label><br>';
+	}
+
+	$html .= '<input type="radio" id="radio_full" name="CI_reloaded_settings[image_size]" value="full"' . checked( 'full', self::$options['image_size'], false ) . '/>';
+    $html .= '<label for="radio_full">full ('.__('Original size of the image', 'comment-images').')</label><br>';
+
  
-    $html = '<input type="radio" id="radio_thumb" name="CI_reloaded_settings[image_size]" value="thumbnail"' . checked( "thumbnail", self::$options['image_size'], false ) . '/>';
-    $html .= '<label for="radio_thumb">Thumbnail (150x150)</label></br>';
-     
-    $html .= '<input type="radio" id="radio_medium" name="CI_reloaded_settings[image_size]" value="medium"' . checked( "medium", self::$options['image_size'], false ) . '/>';
-    $html .= '<label for="radio_medium">Medium (300x300)</label></br>';
-
-    $html .= '<input type="radio" id="radio_large" name="CI_reloaded_settings[image_size]" value="large"' . checked( "large", self::$options['image_size'], false ) . '/>';
-    $html .= '<label for="radio_large">Large (1024x1024)</label></br>';
-
-    $html .= '<input type="radio" id="radio_full" name="CI_reloaded_settings[image_size]" value="full"' . checked( "full", self::$options['image_size'], false ) . '/>';
-    $html .= '<label for="radio_full">Full</label></br>';
-
     $html .= '<script type="text/javascript"> 
     			function my_alert(){ 
     				return confirm("'. __('Converting all images from Comment Images to Comment Images Reloaded. Disable old plugin to avoid dublicating the images in comments. You can allways revert to old plugin','comment-images').'");}</script>';
