@@ -318,18 +318,19 @@ class Comment_Image_Reloaded {
 				$img_name = explode('/',$comment_image['file']);
 				$img_name = $img_name[ count($img_name) - 1 ];
 				$files[ $img_name ] = array();
-				$files['name'] = $comment_image['file'];
+				$files['name'] = $img_name;
 				$files['type'] = $comment_image['type'];
 				$files['size'] = filesize($comment_image['file']);
 				$files['tmp_name'] = $comment_image['file'];
 				$files['error'] = $comment_image['error'];
-
 				$id = media_handle_sideload( $files, $comment->comment_post_ID);
-
 				if($id){
 				update_comment_meta( $comment->comment_ID, 'comment_image_reloaded', $id );
 				$counter++;
 				}
+
+				@unlink( $files['tmp_name'] );
+
 
 				// Now we need to actually update the comment
 
