@@ -84,11 +84,6 @@ class Comment_Image_Reloaded {
 			} 
 
 
-			// We need to update all of the comments thus far
-			// if( false == get_option( 'update_comment_images_reloaded' ) || null == get_option( 'update_comment_images_reloaded' ) ) {
-			// 	$this->update_old_comments();
-			// } // end if
-
 			// Go ahead and enable comment images site wide
 			add_option( 'comment_image_reloaded_toggle_state', 'enabled' );
 
@@ -566,11 +561,6 @@ class Comment_Image_Reloaded {
 					if( $metadata_url[$comment->comment_ID]){
 
 						$img_url = unserialize($metadata_url[$comment->comment_ID]);
-						//$img_url = explode('&',$img_url);
-						//$img_url_out['thumbnail'] = $img_url[0];
-						//$img_url_out['medium'] = $img_url[1];
-						//$img_url_out['large'] = $img_url[2];
-						//$img_url_out['full'] = $img_url[3];
 						$img_url_out = $img_url[$size];
 
 					} else {
@@ -579,8 +569,6 @@ class Comment_Image_Reloaded {
 						$img_url['medium'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'medium');
 						$img_url['large'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'large');
 						$img_url['full'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'full');
-						//$to_bd = $img_url['thumbnail'].'&'.$img_url['medium'].'&'.$img_url['large'].'&'.$img_url['full'];
-						//$img_url = wp_get_attachment_image($metadata_ids[$comment->comment_ID]);
 						add_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url',$img_url);
 						$img_url_out = $img_url[$size];
 
@@ -651,25 +639,6 @@ class Comment_Image_Reloaded {
 		 $html .= '</select>';
 
 		 $html .= '<hr />';
-
-		 // $comment_image_state = 'disabled';
-		 // if( '' == get_option( 'comment_image_reloaded_toggle_state' ) || 'enabled' == get_option( 'comment_image_reloaded_toggle_state' ) ) {
-			//  $comment_image_state = 'enabled';
-		 // } // end if/else
-
-		 // $html .= '<p class="comment-image-warning">' . __( 'Doing this will update <strong>all</strong> posts.', 'comment-images' ) . '</p>';
-		 // if( 'enabled' == $comment_image_state ) {
-
-			//  $html .= '<input type="button" class="button" name="comment_image_reloaded_toggle" id="comment_image_reloaded_toggle" value="' . __( 'Disable Comments For All Posts', 'comment-images' ) . '"/>';
-
-		 // } else {
-
-			//  $html .= '<input type="button" class="button" name="comment_image_reloaded_toggle" id="comment_image_reloaded_toggle" value="' . __( 'Enable Comments For All Posts', 'comment-images' ) . '"/>';
-
-		 // } // end if/else
-
-		 // $html .= '<input type="hidden" name="comment_image_reloaded_toggle_state" id="comment_image_reloaded_toggle_state" value="' . $comment_image_state . '"/>';
-		 // $html .= '<input type="hidden" name="comment_image_reloaded_source" id="comment_image_reloaded_source" value=""/>';
 
 		 echo $html;
 
