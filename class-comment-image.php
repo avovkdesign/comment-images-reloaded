@@ -565,13 +565,13 @@ class Comment_Image_Reloaded {
 					// Size of the image to show (thumbnail, large, full, medium)
 					if( $metadata_url[$comment->comment_ID]){
 
-						$img_url = $metadata_url[$comment->comment_ID];
-						$img_url = explode('&',$img_url);
-						$img_url_out['thumbnail'] = $img_url[0];
-						$img_url_out['medium'] = $img_url[1];
-						$img_url_out['large'] = $img_url[2];
-						$img_url_out['full'] = $img_url[3];
-						$img_url_out = $img_url_out[$size];
+						$img_url = unserialize($metadata_url[$comment->comment_ID]);
+						//$img_url = explode('&',$img_url);
+						//$img_url_out['thumbnail'] = $img_url[0];
+						//$img_url_out['medium'] = $img_url[1];
+						//$img_url_out['large'] = $img_url[2];
+						//$img_url_out['full'] = $img_url[3];
+						$img_url_out = $img_url[$size];
 
 					} else {
 
@@ -579,8 +579,9 @@ class Comment_Image_Reloaded {
 						$img_url['medium'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'medium');
 						$img_url['large'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'large');
 						$img_url['full'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'full');
-						$to_bd = $img_url['thumbnail'].'&'.$img_url['medium'].'&'.$img_url['large'].'&'.$img_url['full'];
-						add_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url', $to_bd );
+						//$to_bd = $img_url['thumbnail'].'&'.$img_url['medium'].'&'.$img_url['large'].'&'.$img_url['full'];
+						//$img_url = wp_get_attachment_image($metadata_ids[$comment->comment_ID]);
+						add_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url',$img_url);
 						$img_url_out = $img_url[$size];
 
 					}
