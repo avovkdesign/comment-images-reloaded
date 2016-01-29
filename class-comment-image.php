@@ -79,6 +79,11 @@ class Comment_Image_Reloaded {
 		// Determine if the hosting environment can save files.
 		if( $this->can_save_files() ) {
 
+			if ( !in_array( 'comment-list', get_theme_support('html5') ) ) {
+ 				add_action('comment_text', array( $this, 'get_html5_comment_content' ) );
+			} 
+
+
 			// We need to update all of the comments thus far
 			// if( false == get_option( 'update_comment_images_reloaded' ) || null == get_option( 'update_comment_images_reloaded' ) ) {
 			// 	$this->update_old_comments();
@@ -154,6 +159,13 @@ class Comment_Image_Reloaded {
 		 return $cols;
 
 	 } // end post_has_comment_images
+
+
+	 function get_html5_comment_content( $ctext ){  // this function sets the comments_array working fine
+ 
+ 		return get_comment_text();
+ 
+	}
 
 	 /**
 	  * Provides a link to the specified post's comments page if the post has comments that contain
