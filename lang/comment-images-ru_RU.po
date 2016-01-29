@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: comment-images-ru_RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-22 10:40+0200\n"
-"PO-Revision-Date: 2016-01-22 10:41+0200\n"
+"POT-Creation-Date: 2016-01-29 14:41+0200\n"
+"PO-Revision-Date: 2016-01-29 14:42+0200\n"
 "Last-Translator: Alexandra Vovk <avovkdesign@gmail.com>\n"
 "Language-Team: Flector <rlector@gmail.com>\n"
 "Language: ru_RU\n"
@@ -12,29 +12,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../class-comment-image.php:152 ../class-comment-image.php:255
+#: ../class-comment-image.php:152 ../class-comment-image.php:262
 #: ../class-comment-image.php:605 ../class-comment-image.php:614
 msgid "Comment Images"
 msgstr "Изображения в комментариях"
 
-#: ../class-comment-image.php:185
+#: ../class-comment-image.php:192
 msgid "View Post Comment Images"
 msgstr "Смотреть изображения в комментариях"
 
-#: ../class-comment-image.php:210
+#: ../class-comment-image.php:217
 msgid "Comment Image"
 msgstr "Изображение"
 
-#: ../class-comment-image.php:327
+#: ../class-comment-image.php:335
 msgid "Updated "
 msgstr "Найдено "
 
-#: ../class-comment-image.php:340
+#: ../class-comment-image.php:348
 msgid ""
 "<strong>Comment Images Notice:</strong> Unfortunately, your host does not "
 "allow uploads from the comment form. This plugin will not work for your host."
@@ -44,7 +44,7 @@ msgstr ""
 "формы комментирования. Таким образом, плагин не будет работать на этом "
 "сервере."
 
-#: ../class-comment-image.php:362
+#: ../class-comment-image.php:370
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an invalid image. If "
 "saved, this image will not display with your comment."
@@ -52,7 +52,7 @@ msgstr ""
 "<strong>Внимание!</strong> Вы пытаетесь загрузить неверное изображение, "
 "поэтому оно не будет прикреплено к вашему комментарию."
 
-#: ../class-comment-image.php:363
+#: ../class-comment-image.php:371
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an image that is too "
 "large. If saved, this image will not be uploaded.<br />The maximum file size "
@@ -62,7 +62,7 @@ msgstr ""
 "сохранении комментария, файл не будет прикреплен! <br /> Максимальный размер "
 "файла:"
 
-#: ../class-comment-image.php:392
+#: ../class-comment-image.php:400
 msgid ""
 "By doing this, you will toggle Comment Images for all posts on your blog. "
 "Are you sure you want to do this?"
@@ -70,11 +70,11 @@ msgstr ""
 "Сделав это, Вы отключите Comment Images Reloaded для всех записей на блоге. "
 "Вы точно хотите сделать это?"
 
-#: ../class-comment-image.php:418
+#: ../class-comment-image.php:426
 msgid "Select an image for your comment (GIF, PNG, JPG, JPEG):"
 msgstr "Выберите изображение для вашего комментария (GIF, PNG, JPG, JPEG):"
 
-#: ../class-comment-image.php:448
+#: ../class-comment-image.php:456
 msgid "Error: Uploaded file is too large. <br/> Go back to: "
 msgstr "Ошибка! Загружаемый файл слишком большой.<br/> Вернуться:"
 
@@ -90,39 +90,43 @@ msgstr "Разрешить изображения"
 msgid "Disable comment images for this post."
 msgstr "Запретить изображения"
 
-#: ../class-comment-image.php:737
+#: ../class-comment-image.php:718
 msgid "image"
 msgstr "изображение"
 
-#: ../class-comment-image.php:737
+#: ../class-comment-image.php:718
 msgid "images"
 msgstr "изображения"
 
-#: ../class-comment-image.php:737
+#: ../class-comment-image.php:718
 msgid "images."
 msgstr "изображений"
 
-#: ../class-comment-image.php:802
+#: ../class-comment-image.php:783
 msgid "Import from Comment Images"
 msgstr "Импортировать данные из Comment Images"
 
-#: ../class-comment-image.php:809
+#: ../class-comment-image.php:790
 msgid "Comment Images import"
 msgstr "Переход с Comment Images"
 
-#: ../class-comment-image.php:817
+#: ../class-comment-image.php:798
 msgid "Settings Comment Images Reloaded"
 msgstr "Настройки Comment Images Reloaded"
 
-#: ../class-comment-image.php:824
+#: ../class-comment-image.php:805
 msgid "Image size"
 msgstr "Размер изображения"
 
-#: ../class-comment-image.php:832
+#: ../class-comment-image.php:813
 msgid "Disable for all"
 msgstr "Отключить для всех"
 
-#: ../class-comment-image.php:858
+#: ../class-comment-image.php:846
+msgid "Original size of the image"
+msgstr "Оригинальный размер изображения"
+
+#: ../class-comment-image.php:851
 msgid ""
 "Converting all images from Comment Images to Comment Images Reloaded. "
 "Disable old plugin to avoid dublicating the images in comments. You can "
@@ -132,11 +136,11 @@ msgstr ""
 "Отключите старый плагин для предотвращения дублирования изображений в "
 "комментариях. Вы всегда сможете вернуться к старому плагину"
 
-#: ../class-comment-image.php:866
+#: ../class-comment-image.php:859
 msgid "Import all images data"
 msgstr "Импортировать все данные картинок"
 
-#: ../class-comment-image.php:867
+#: ../class-comment-image.php:860
 msgid ""
 "You can import data from original Comment Images plugin. This is leave all "
 "data without deleting anything"
@@ -145,7 +149,7 @@ msgstr ""
 "плагина Comment Images. Эта операция не удалит данные и вы сможете в любое "
 "время вернуться на Comment Images."
 
-#: ../class-comment-image.php:879
+#: ../class-comment-image.php:872
 msgid "Deactivate images for all posts"
 msgstr "Запретить добавление изображений для всех записей"
 
