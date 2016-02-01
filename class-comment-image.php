@@ -561,6 +561,12 @@ class Comment_Image_Reloaded {
 					if( $metadata_url[$comment->comment_ID]){
 
 						$img_url = unserialize($metadata_url[$comment->comment_ID]);
+						if(!$img_url){
+							foreach( get_intermediate_image_sizes() as $_size ){
+								$img_url[$_size] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], $_size);
+							}
+							update_comment_meta($comment->comment_ID, 'comment_image_reloaded_url',$img_url);
+						}
 						$img_url_out = $img_url[$size];
 
 					} else {
