@@ -79,7 +79,9 @@ class Comment_Image_Reloaded {
 		// Determine if the hosting environment can save files.
 		if( $this->can_save_files() ) {
 
-			if ( !in_array( 'comment-list', get_theme_support('html5') ) ) {
+			$themesupport = get_theme_support('html5');
+		
+			if ( $themesupport === false || !in_array( 'comment-list', $themesupport ) ) {
  				add_action('comment_text', array( $this, 'get_html5_comment_content' ) );
 			} 
 
