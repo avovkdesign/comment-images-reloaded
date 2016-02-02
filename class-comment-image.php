@@ -513,7 +513,7 @@ class Comment_Image_Reloaded {
 		$comment_ids = '';
 		$current_post_state = get_post_meta( $post->ID, 'comment_images_reloaded_toggle', true );
 		$option = get_option( 'CI_reloaded_settings' );
-		$size = $option['image_size'] ? $option['image_size'] : 'full';
+		$size = $option['image_size'] ? $option['image_size'] : 'large';
 		$all_posts_state = !empty($option['disable_comment_images']) ? $option['disable_comment_images'] : '';
 		foreach ($comments as $count => $comment) {
 			$comment_ids .= $comment->comment_ID . ',';
@@ -565,6 +565,7 @@ class Comment_Image_Reloaded {
 							foreach( get_intermediate_image_sizes() as $_size ){
 								$img_url[$_size] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], $_size);
 							}
+							$img_url['full'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'full');
 							update_comment_meta($comment->comment_ID, 'comment_image_reloaded_url',$img_url);
 						}
 						$img_url_out = $img_url[$size];
@@ -573,6 +574,7 @@ class Comment_Image_Reloaded {
 						foreach( get_intermediate_image_sizes() as $_size ){
 							$img_url[$_size] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], $_size);
 						}
+						$img_url['full'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'full');
 						add_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url',$img_url);
 						$img_url_out = $img_url[$size];
 
@@ -831,22 +833,24 @@ class Comment_Image_Reloaded {
 	$sizes = get_intermediate_image_sizes();
 	$html = '';
 	$all_sizes = array();
+	global $_wp_additional_image_sizes;
 	foreach($sizes as $size){
 		if($size == 'medium_large') continue;
 		
 		if ( in_array( $size, array('thumbnail', 'medium', 'full', 'large') ) ) {
-			$all_sizes['width']  = get_option( "{$size}_size_w" );
-			$all_sizes['height'] = get_option( "{$size}_size_h" );
+			$all_sizes[$size]['width']  = get_option( "{$size}_size_w" );
+			$all_sizes[$size]['height'] = get_option( "{$size}_size_h" );
 		} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
-			$all_sizes = array(
+			$all_sizes[$size] = array(
 				'width'  => $_wp_additional_image_sizes[ $size ]['width'],
 				'height' => $_wp_additional_image_sizes[ $size ]['height'],
 			);
 		}
 
 		$html .= '<input type="radio" id="radio_'.$size.'" name="CI_reloaded_settings[image_size]" value="'.$size.'"' . checked( $size, self::$options['image_size'], false ) . '/>';
-    	$html .= '<label for="radio_'.$size.'">' . $size . ' ( '.$all_sizes['width'] . 'x' . $all_sizes['height'] . ' )</label><br>';
+    	$html .= '<label for="radio_'.$size.'">' . $size . ' ( '.$all_sizes[$size]['width'] . 'x' . $all_sizes[$size]['height'] . ' )</label><br>';
 	}
+
 
 	$html .= '<input type="radio" id="radio_full" name="CI_reloaded_settings[image_size]" value="full"' . checked( 'full', self::$options['image_size'], false ) . '/>';
     $html .= '<label for="radio_full">full ('.__('Original size of the image', 'comment-images').')</label><br>';
