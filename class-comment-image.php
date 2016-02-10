@@ -6,7 +6,7 @@ require_once(ABSPATH . 'wp-admin/includes/file.php');
 require_once(ABSPATH . 'wp-admin/includes/image.php');
 
 
-
+require_once( plugin_dir_path( __FILE__ ) . 'license.php' ); 
 class Comment_Image_Reloaded {
 
 	/*--------------------------------------------*
@@ -20,6 +20,8 @@ class Comment_Image_Reloaded {
 	 *
 	 * @var      object
 	 */
+	 
+	 
 	protected static $instance = null;
 
 	/**
@@ -75,6 +77,7 @@ class Comment_Image_Reloaded {
 		self::$options = get_option( 'CI_reloaded_settings' );
 		// Load plugin textdomain
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );
+
 
 		// Determine if the hosting environment can save files.
 		if( $this->can_save_files() ) {
@@ -580,8 +583,6 @@ class Comment_Image_Reloaded {
 
 					}
 					// ...and render it in a paragraph element appended to the comment
-
-					
 						$comment->comment_content .= '<p class="comment-image-reloaded">';
 							$comment->comment_content .= $img_url_out;
 						$comment->comment_content .= '</p><!-- /.comment-image-reloaded -->';
@@ -846,9 +847,11 @@ class Comment_Image_Reloaded {
 				'height' => $_wp_additional_image_sizes[ $size ]['height'],
 			);
 		}
+		if($all_sizes[$size]['height'] != 0 && $all_sizes[$size]['width'] != 0){
 
 		$html .= '<input type="radio" id="radio_'.$size.'" name="CI_reloaded_settings[image_size]" value="'.$size.'"' . checked( $size, self::$options['image_size'], false ) . '/>';
     	$html .= '<label for="radio_'.$size.'">' . $size . ' ( '.$all_sizes[$size]['width'] . 'x' . $all_sizes[$size]['height'] . ' )</label><br>';
+    	}
 	}
 
 
