@@ -6,7 +6,6 @@ require_once(ABSPATH . 'wp-admin/includes/file.php');
 require_once(ABSPATH . 'wp-admin/includes/image.php');
 
 
-require_once( plugin_dir_path( __FILE__ ) . 'license.php' ); 
 class Comment_Image_Reloaded {
 
 	/*--------------------------------------------*
