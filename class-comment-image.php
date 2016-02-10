@@ -570,7 +570,10 @@ class Comment_Image_Reloaded {
 							$img_url['full'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'full');
 							update_comment_meta($comment->comment_ID, 'comment_image_reloaded_url',$img_url);
 						}
-						$img_url_out = $img_url[$size];
+						if( !empty( $img_url[$size] ) )
+							$img_url_out = $img_url[$size];
+						else
+							$img_url_out = $img_url['full'];
 
 					} else {
 						foreach( get_intermediate_image_sizes() as $_size ){
@@ -578,7 +581,10 @@ class Comment_Image_Reloaded {
 						}
 						$img_url['full'] = wp_get_attachment_image($metadata_ids[$comment->comment_ID], 'full');
 						add_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url',$img_url);
-						$img_url_out = $img_url[$size];
+						if( !empty( $img_url[$size] ) )
+							$img_url_out = $img_url[$size];
+						else
+							$img_url_out = $img_url['full'];
 
 					}
 					// ...and render it in a paragraph element appended to the comment
