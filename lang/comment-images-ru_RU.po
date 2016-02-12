@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: comment-images-ru_RU\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-12 13:05+0200\n"
-"PO-Revision-Date: 2016-02-12 17:36+0200\n"
+"PO-Revision-Date: 2016-02-12 22:05+0200\n"
 "Last-Translator: Alexandra Vovk <avovkdesign@gmail.com>\n"
 "Language-Team: WP Puzzle <wppuzzle@gmail.com>\n"
 "Language: ru_RU\n"
@@ -45,18 +45,17 @@ msgid ""
 "<strong>Comment Images Notice:</strong> Unfortunately, your host does not "
 "allow uploads from the comment form. This plugin will not work for your host."
 msgstr ""
-"<strong>Предупреждение Comment Images Reloaded:</strong> К сожалению, ваш "
-"сервер сконфигурирован таким образом, что не позволяет сохранять файлы из "
-"формы комментирования. Таким образом, плагин не будет работать на этом "
-"сервере."
+"Предупреждение Comment Images Reloaded: К сожалению, ваш сервер "
+"сконфигурирован таким образом, что не позволяет сохранять файлы из формы "
+"комментирования. Плагин не будет работать на вашем сервере."
 
 #: ../class-comment-image-reloaded.php:499
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an invalid image. If "
 "saved, this image will not display with your comment."
 msgstr ""
-"<strong>Внимание!</strong> Вы пытаетесь загрузить неверное изображение, "
-"поэтому оно не будет прикреплено к вашему комментарию."
+"Внимание! Вы пытаетесь загрузить неверное изображение, поэтому оно не будет "
+"прикреплено к вашему комментарию."
 
 #: ../class-comment-image-reloaded.php:500
 msgid ""
@@ -64,9 +63,8 @@ msgid ""
 "large. If saved, this image will not be uploaded.<br />The maximum file size "
 "is: "
 msgstr ""
-"<strong>Внимание!</strong>Вы пытаетесь загрузить слишком большой файл. При "
-"сохранении комментария, файл не будет прикреплен! <br /> Максимальный размер "
-"файла:"
+"Внимание! Вы пытаетесь загрузить слишком большой файл. При сохранении "
+"комментария, файл не будет прикреплен! Максимальный размер файла:"
 
 #: ../class-comment-image-reloaded.php:522
 msgid "Do you want to permanently delete an image attached to this comment?"
@@ -95,7 +93,7 @@ msgstr "Во время загрузки фала произошла неизв�
 
 #: ../class-comment-image-reloaded.php:926
 msgid "Doing this will only update <strong>this</strong> post."
-msgstr "Для <strong>текущей</strong> записи:"
+msgstr "Для текущей записи:"
 
 #: ../class-comment-image-reloaded.php:928
 msgid "Enable comment images for this post."

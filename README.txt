@@ -1,9 +1,8 @@
 === Comment Image Reloaded ===
 Contributors: wppuzzle, egolacrima
-Tags: comment, image, attachment, images, comment attachments
+Tags: comment, image, attachment, images, comments, attachments, image zoom
 Donate link: http://avovkdesign.com/bymecoffee
-Requires at least: 3.0
-Requires at least: 3.0
+Requires at least: 3.2
 Tested up to: 4.4.2
 Stable tag: 2.1.0
 License: GPLv2 or later 
@@ -12,16 +11,21 @@ License: GPLv2 or later
 
 == Description ==
 
-**CIR** ([Comment Images Reloaded](http://wp-puzzle.com/comment-images-reloaded/ "Comment Images Reloaded") ) позволяет прикреплять фотографии или другие изображения к каждому комментарию. 
+**CIR** ([Comment Images Reloaded](http://wp-puzzle.com/comment-images-reloaded/ "Comment Images Reloaded")) позволяет прикреплять фотографии или другие изображения к каждому комментарию. 
 Плагин учитывает технические моменты, без соблюдения которых значительно растет нагрузка на БД, а страница сайта с сотнями комментариев непомерно увеличивается в размере.
 
 CIR обеспечивает:
+
 * получение всех данных об изображениях **всего лишь двумя запросами в БД**, не зависимо от количества комментариев на странице;
-* **настройку размера выводимого в комментарии изображения** (на выбор доступны все зарегистрированные в WordPress размеры  - `thumbnail`, `medium`, `large` + пользовательские); в полном размере изображение будет выведено только в том случае, если ширина и выота стандартных картинок выставлены в `0` в настроках сайта;
+* **настройку размера выводимого в комментарии изображения** (на выбор доступны все зарегистрированные в WordPress размеры  - `thumbnail`, `medium`, `large` + пользовательские); в полном размере изображение будет выведено только в том случае, если ширина и выcота стандартных картинок выставлены в `0` в настроках сайта;
 * пользовательскую настройку максимального размера для загружаемых картинок (ограничен только настройками сервера в php.ini).
 
 
 За основу CIR взят плагин - [Comment Image](https://wordpress.org/plugins/comment-images/ "Comment Image").
+
+
+== Installation ==
+
 
 
 == Changelog ==

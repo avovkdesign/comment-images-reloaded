@@ -398,7 +398,13 @@ class Comment_Image_Reloaded {
 
 			// save attachments data if it not exists
 			if ( !array_key_exists( $post_id, $attachments) ) {
-				$new = get_attached_media( 'image', $post_id );
+				$new = array();
+				if ( function_exists('get_attached_media') ) {
+					$new = get_attached_media( 'image', $post_id );
+				} else {
+					$new = get_children( 'post_type=attachment&post_mime_type=image' );
+				}
+
 				$attachments[ $post_id ] = json_decode( json_encode($new), true ); // save WP_Post as associative array
 			}
 
@@ -444,7 +450,8 @@ class Comment_Image_Reloaded {
 		$response = __('Updated ','comment-images') . $counter .' '. self::num_word($counter) . $dump;
 
 		echo $response;
-		wp_die();
+		// wp_die();
+		die;
 
 	 } // end update_old_comments
 
@@ -484,11 +491,18 @@ class Comment_Image_Reloaded {
 
 		if ( is_single() || is_page() ) {
 
-			$jsfile = 'js/cir-withoutzoom.min.js';
+			$jsfile = 'js/cir.min.js';
 
 			if ( isset(self::$options['image_zoom']) && 'enable' == self::$options['image_zoom'] ) {
+
 				$jsfile = 'js/cir-withzoom.min.js';
-				wp_enqueue_style( 'magnific', plugins_url( 'js/magnific.css', __FILE__) );
+
+				// check jQuery version, magnific required jQuery 1.7.2+
+        		if ( ( version_compare( '1.7.2', $wp_scripts->registered['jquery']->ver ) == 1 ) && !is_admin() ) {
+                	wp_deregister_script('jquery'); 
+					wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', false, '1.7.2' );
+        		}
+
 			}
 
 			wp_register_script( 'comment-images-reloaded', plugins_url( $jsfile, __FILE__ ), array( 'jquery' ), false, true );
@@ -539,7 +553,6 @@ class Comment_Image_Reloaded {
 			);
 
 			wp_enqueue_script( 'comment-images-reloaded-admin' );
-			
 
 		} // end if
 
@@ -568,23 +581,26 @@ class Comment_Image_Reloaded {
 
 		$logoimg = '<img src="data:image/png;base64,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" alt="wp-puzzle.com logo">';
 
-		$brand_img = ( !empty($option['show_brand_img']) && 'disable'==$option['show_brand_img'] )
+		$brand_img = ( !empty($option['show_brand_img']) && 'disable'==$option['show_brand_img'] ) 
 			? ''
 			: '<a href="http://wp-puzzle.com/" rel="external nofollow" target="_blank" class="cir-link">'. $logoimg .'</a>';
 
 		// Create the label and the input field for uploading an image
 	 	if( 'disable' != $all_posts_state  && $current_post_state == 'enable' ){
 
+	 		$before = ( isset($option['before_title']) ) 
+	 			? $option['before_title'] 
+	 			: __( 'Select an image for your comment (GIF, PNG, JPG, JPEG):', 'comment-images' );
+
 		 	$html = '<div id="comment-image-reloaded-wrapper">';
 				$html .= '<p id="comment-image-reloaded-error"></p>';
-				$html .= "<label for='comment_image_reloaded_$post_id'>". $option['before_title'] ."</label>";
+				$html .= "<label for='comment_image_reloaded_$post_id'>". $before ."</label>";
 				$html .= "<p class='comment-image-reloaded'><input type='file' name='comment_image_reloaded_$post_id' id='comment_image_reloaded' /></p>";
 				$html .= $brand_img;
 			 $html .= '</div><!-- #comment-image-wrapper -->';
 
 			 echo $html;
 			 // $fields['comment_notes_after'] = $html;
-
 
 		 } // end if
 
@@ -610,8 +626,7 @@ class Comment_Image_Reloaded {
 		// If the nonce is valid and the user uploaded an image, let's upload it to the server
 		// if( isset( $_FILES[ $comment_image_id ] ) && ! empty( $_FILES[ $comment_image_id ] ) ) {
 		if( isset( $_FILES[ $comment_image_id ] ) && !empty( $_FILES[ $comment_image_id ]['name'] )  ) {
-// print_r($_FILES);
-// print_r($this->limit_file_size);
+
             // disable save files larger than $limit_filesize
             if ( $this->limit_file_size < $_FILES[ $comment_image_id ]['size'] ) {
 
@@ -1024,13 +1039,15 @@ class Comment_Image_Reloaded {
     		}
     	switch ($num) {
     		case 1: {
-    		return($words[0]);
+    			return($words[0]);
     		}
-    		case 2: case 3: case 4: {
-    		return($words[1]);
+    		case 2: 
+    		case 3: 
+    		case 4: {
+    			return($words[1]);
     		}
     		default: {
-    		return($words[2]);
+    			return($words[2]);
     		}
     	}
     }
@@ -1188,9 +1205,12 @@ class Comment_Image_Reloaded {
 	//
 	public static function CIR_imagesize_render() {
 
-		$sizes = get_intermediate_image_sizes();
+		$val = ( isset(self::$options['image_size']) ) ? self::$options['image_size'] : 'large';
+
 		$html = '';
+		$sizes = get_intermediate_image_sizes();
 		$all_sizes = array();
+
 		global $_wp_additional_image_sizes;
 		foreach($sizes as $size){
 			if($size == 'medium_large') continue;
@@ -1204,10 +1224,9 @@ class Comment_Image_Reloaded {
 					'height' => $_wp_additional_image_sizes[ $size ]['height'],
 				);
 			}
-			if($all_sizes[$size]['height'] != 0 && $all_sizes[$size]['width'] != 0){
-
-			$html .= '<input type="radio" id="radio_'.$size.'" name="CI_reloaded_settings[image_size]" value="'.$size.'"' . checked( $size, self::$options['image_size'], false ) . '/>';
-	    	$html .= '<label for="radio_'.$size.'">' . $size . ' ( '.$all_sizes[$size]['width'] . 'x' . $all_sizes[$size]['height'] . ' )</label><br>';
+			if ( $all_sizes[$size]['height'] != 0 && $all_sizes[$size]['width'] != 0){
+				$html .= '<input type="radio" id="radio_'.$size.'" name="CI_reloaded_settings[image_size]" value="'.$size.'"' . checked( $size, $val, false ) . '/>';
+	    		$html .= '<label for="radio_'.$size.'">' . $size . ' ( '.$all_sizes[$size]['width'] . 'x' . $all_sizes[$size]['height'] . ' )</label><br>';
 	    	}
 		}
 
