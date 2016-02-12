@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Comment Images 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 23:21-0500\n"
-"PO-Revision-Date: 2013-06-06 05:45+0100\n"
-"Last-Translator: Tom McFarlin <tom@tommcfarlin.com>\n"
+"POT-Creation-Date: 2016-02-12 12:14+0200\n"
+"PO-Revision-Date: 2016-02-12 12:15+0200\n"
+"Last-Translator: Alexandra Vovk <avovkdesign@gmail.com>\n"
 "Language-Team: Tom McFarlin <tom@tommcfarlin.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -12,22 +12,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../plugin.php:122 ../plugin.php:220 ../plugin.php:440
+#: ../class-comment-image-reloaded.php:171
+#: ../class-comment-image-reloaded.php:297
+#: ../class-comment-image-reloaded.php:881
+#: ../class-comment-image-reloaded.php:890
 msgid "Comment Images"
 msgstr "Imagenes de comentario"
 
-#: ../plugin.php:155
+#: ../class-comment-image-reloaded.php:219
 msgid "View Post Comment Images"
 msgstr "Vea los imagenes de comtentaro"
 
-#: ../plugin.php:180
+#: ../class-comment-image-reloaded.php:245
 msgid "Comment Image"
 msgstr "Imagen de comentario"
 
-#: ../plugin.php:283
+#: ../class-comment-image-reloaded.php:270
+msgid "Delete image"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:435
+msgid "Updated "
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:451
 msgid ""
 "<strong>Comment Images Notice:</strong> Unfortunately, your host does not "
 "allow uploads from the comment form. This plugin will not work for your host."
@@ -36,7 +47,7 @@ msgstr ""
 "web no permite subir imagenes de comentarios. Esta plugin no funciona con "
 "este servidor."
 
-#: ../plugin.php:331
+#: ../class-comment-image-reloaded.php:490
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an invalid image. If "
 "saved, this image will not display with your comment."
@@ -44,30 +55,162 @@ msgstr ""
 "<strong>Atención!</strong> Estás probando subir un formato de imagen que no "
 "es permitido. Si esta guardado, no se aparece con su comentario."
 
-#: ../plugin.php:334
-msgid "Select an image for your comment (GIF, PNG, JPG, JPEG):"
-msgstr "Selecciona un imagen para su comentario (GIF, PNG, JPG, JPEG)"
+#: ../class-comment-image-reloaded.php:491
+msgid ""
+"<strong>Heads up!</strong> You are attempting to upload an image that is too "
+"large. If saved, this image will not be uploaded.<br />The maximum file size "
+"is: "
+msgstr ""
 
-#: ../plugin.php:460
+#: ../class-comment-image-reloaded.php:513
+msgid "Do you want to permanently delete an image attached to this comment?"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:514
+msgid "Image deleted!"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:528
+msgid ""
+"By doing this, you will toggle Comment Images for all posts on your blog. "
+"Are you sure you want to do this?"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:606
+msgid "Error: Uploaded file is too large. <br/> Go back to: "
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:615
+msgid "Unknown error occurred while loading image.<br/> Go back to: "
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:910
+msgid "Doing this will only update <strong>this</strong> post."
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:912
 msgid "Enable comment images for this post."
 msgstr "Activar imagenes para los comtentarios de esta post."
 
-#: ../plugin.php:461
+#: ../class-comment-image-reloaded.php:913
 msgid "Disable comment images for this post."
 msgstr "Desactivar imagenes para los comentarios de este post."
 
-#: ../plugin.php:502
-msgid "png"
-msgstr "png"
+#: ../class-comment-image-reloaded.php:998
+msgid "image"
+msgstr ""
 
-#: ../plugin.php:502
-msgid "gif"
-msgstr "gif"
+#: ../class-comment-image-reloaded.php:998
+msgid "images"
+msgstr ""
 
-#: ../plugin.php:502
-msgid "jpg"
-msgstr "jpg"
+#: ../class-comment-image-reloaded.php:998
+msgid "images."
+msgstr ""
 
-#: ../plugin.php:502
-msgid "jpeg"
-msgstr "jpeg"
+#: ../class-comment-image-reloaded.php:1070
+msgid "Import from Comment Images"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1077
+msgid "Comment Images import"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1088
+msgid "Settings Comment Images Reloaded"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1095
+msgid "Image size"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1103
+msgid "Maximum file size"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1111
+msgid "Text before input"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1119
+msgid "Images zoom"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1127
+msgid "Author's link"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1135
+msgid "Disable for all"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1150
+msgid "Import all images data"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1151
+msgid ""
+"You can import data from original Comment Images plugin. This is leave all "
+"data without deleting anything"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1185
+msgid "Original size of the image"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1190
+msgid ""
+"Converting all images from Comment Images to Comment Images Reloaded. "
+"Disable old plugin to avoid dublicating the images in comments. You can "
+"allways revert to old plugin"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1208
+msgid " bytes"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1209
+msgid "Maximum allowed file size "
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1209
+msgid "php.ini settings"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1223
+msgid "Select an image for your comment (GIF, PNG, JPG, JPEG):"
+msgstr "Selecciona un imagen para su comentario (GIF, PNG, JPG, JPEG)"
+
+#: ../class-comment-image-reloaded.php:1226
+msgid "Enter custom title for file input field"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1242
+msgid "Enable image zoom on click (it work with Magnific Popup jQuery plugin)"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1258
+msgid "Check it to hide author's link"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1259
+msgid ""
+"We place a small link under the image field, letting others know about our "
+"plugin. Thanks for your promotion!"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1275
+msgid "Deactivate images for all posts"
+msgstr ""
+
+#~ msgid "png"
+#~ msgstr "png"
+
+#~ msgid "gif"
+#~ msgstr "gif"
+
+#~ msgid "jpg"
+#~ msgstr "jpg"
+
+#~ msgid "jpeg"
+#~ msgstr "jpeg"
