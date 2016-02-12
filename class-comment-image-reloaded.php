@@ -276,7 +276,7 @@ class Comment_Image_Reloaded {
 				$html = '<img src="' . $image_url . '" width="150" style="max-width:100%"/>';
 				$html .= '<div class="row-actions">';
 				$html .= '<button class="button delete-cid" data-cid=' . $comment_id . '" data-aid="'. $comment_image_data .'">';
-				$html .= __( 'Delete image', 'comment-image' );
+				$html .= __( 'Delete image', 'comment-images' );
 				$html .= '</button>';
 				$html .= '</div>';
 
@@ -519,8 +519,8 @@ class Comment_Image_Reloaded {
 			'cmr_reloaded_ajax_object', 
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'before_delete_text' => __( 'Do you want to permanently delete an image attached to this comment?', 'comment-image' ),
-				'after_delete_text' => __( 'Image deleted!', 'comment-image' ),
+				'before_delete_text' => __( 'Do you want to permanently delete an image attached to this comment?', 'comment-images' ),
+				'after_delete_text' => __( 'Image deleted!', 'comment-images' ),
 			) 
 		);
 		wp_enqueue_script( 'comment-images-reloaded-ajax' );
@@ -609,8 +609,9 @@ class Comment_Image_Reloaded {
 
 		// If the nonce is valid and the user uploaded an image, let's upload it to the server
 		// if( isset( $_FILES[ $comment_image_id ] ) && ! empty( $_FILES[ $comment_image_id ] ) ) {
-		if( isset( $_FILES[ $comment_image_id ] ) && !empty( $_FILES[ $comment_image_id ] )  ) {
-
+		if( isset( $_FILES[ $comment_image_id ] ) && !empty( $_FILES[ $comment_image_id ]['name'] )  ) {
+// print_r($_FILES);
+// print_r($this->limit_file_size);
             // disable save files larger than $limit_filesize
             if ( $this->limit_file_size < $_FILES[ $comment_image_id ]['size'] ) {
 
@@ -756,7 +757,7 @@ class Comment_Image_Reloaded {
 					$img_url_out = '';
 
 					// Size of the image to show (thumbnail, large, full, medium)
-					if( $metadata_url[$comment->comment_ID]){
+					if ( array_key_exists($comment->comment_ID,$metadata_url) && !empty($metadata_url[$comment->comment_ID]) ){
 
 						$img_url = unserialize($metadata_url[$comment->comment_ID]);
 						if(!$img_url){
@@ -839,7 +840,8 @@ class Comment_Image_Reloaded {
 
 		// $table = $wpdb->base_prefix . 'commentmeta';
 		// $postids = $wpdb->get_col( $wpdb->prepare( "SELECT comment_id FROM $table WHERE meta_value = $id" ) );
-		$postids = $wpdb->get_col( $wpdb->prepare( "SELECT comment_id FROM $wpdb->commentmeta WHERE meta_value = $id" ) );
+		$postids = $wpdb->get_col( $wpdb->prepare( "SELECT comment_id FROM $wpdb->commentmeta WHERE meta_value = %d", $id ) );
+		// $postids = $wpdb->get_col( $wpdb->prepare( "SELECT comment_id FROM $wpdb->commentmeta WHERE meta_value = $id" ) );
 
 		foreach ( $postids as $cid ) {
 			delete_comment_meta( $cid, 'comment_image_reloaded' );
@@ -1361,8 +1363,5 @@ class Comment_Image_Reloaded {
 
 
 } // end class
-/* ==================================================================================== 
-
-
 	
 

@@ -36,6 +36,7 @@ jQuery(function($){
                 },
 
                 function(response) {
+                    console.log(response);
                     if ( 'true' == response ) {
                         $(td).html( cmr_reloaded_ajax_object.after_delete_text );
                     }
