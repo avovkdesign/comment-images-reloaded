@@ -1,4 +1,4 @@
-=== Comment Image Reloaded ===
+=== Comment Images Reloaded ===
 Contributors: wppuzzle, egolacrima
 Tags: comment, image, attachment, images, comments, attachments, image zoom
 Donate link: http://avovkdesign.com/bymecoffee
@@ -21,10 +21,34 @@ CIR обеспечивает:
 * пользовательскую настройку максимального размера для загружаемых картинок (ограничен только настройками сервера в php.ini).
 
 
-За основу CIR взят плагин - [Comment Image](https://wordpress.org/plugins/comment-images/ "Comment Image").
+За основу CIR взят плагин - [Comment Images](https://wordpress.org/plugins/comment-images/ "Comment Images").
 
 
 == Installation ==
+
+
+= Automatic installation: =
+
+1. Log-in to your WordPress admin interface.
+1. Hover over "Plugins" and click on "Add New".
+1. Under Search enter Comment Images Reloaded and click the "Search Plugins" button.
+1. In results page click the "Install Now" link for "Comment Images Reloaded".
+1. Click "Activate Plugin" to finish installation. You're done!
+
+= Manual installation: =
+
+1. Download [Comment Images Reloaded](https://downloads.wordpress.org/plugin/comment-images-reloaded.zip "Comment Images Reloaded") and unzip the plugin folder.
+1. Upload `hierarchical-sitemap` folder into to the `/wp-content/plugins/` directory.
+1. Go to WordPress dashboard and navigate to "Plugins" -> "Installed Plugins".
+1. Activate "Comment Images Reloaded".
+
+
+
+== Screenshots ==
+
+1. The default comment form in Twenty Sixteen with image upload form.
+1. Comments Dashboard showing image for each comment.
+1. Admin page with plugin settings.
 
 
 
@@ -62,5 +86,3 @@ CIR обеспечивает:
 = 2.0 =
 * Reloaded версия плагина Comment Images
 
-
-== TODO list ==
