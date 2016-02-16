@@ -96,12 +96,7 @@ class Comment_Image_Reloaded {
 		if( $this->can_save_files() ) {
 
 			// check html5 comments support
-			$themesupport = get_theme_support('html5');
-		
-			// add fix for xhtml comments
-			if ( $themesupport === false || !in_array( 'comment-list', $themesupport ) ) {
- 				add_action('comment_text', array( $this, 'get_html5_comment_content' ) );
-			} 
+			add_action( 'after_setup_theme', array( $this, 'support_comment_list' ), 9999 );
 
 			// Go ahead and enable comment images site wide
 			add_option( 'comment_image_reloaded_toggle_state', 'enabled' );
@@ -116,7 +111,11 @@ class Comment_Image_Reloaded {
 
 			// Add the Upload input to the comment form
 			// add_action( 'comment_form_default_fields' , array( $this, 'add_image_upload_form' ) );
-			add_action( 'comment_form' , array( $this, 'add_image_upload_form' ) );
+            $autofield = ( isset(self::$options['auto_echo']) && 'disable' == self::$options['auto_echo'] ) ? false : true; 
+			if ( $autofield ) {
+				add_action( 'comment_form' , array( $this, 'add_image_upload_form' ) );
+			}
+
 			add_filter( 'wp_insert_comment', array( $this, 'save_comment_image' ) );
 			add_filter( 'comments_array', array( $this, 'display_comment_image' ) );
 
@@ -162,7 +161,6 @@ class Comment_Image_Reloaded {
 	} // end constructor
 
 
-
 	/*--------------------------------------------*
 	 * Core Functions
 	 *---------------------------------------------*/
@@ -184,16 +182,39 @@ class Comment_Image_Reloaded {
 	} // end post_has_comment_images
 
 
+
+	/**
+	 * Check html5 comment-list in theme supports
+	 *
+	 */
+	public function support_comment_list() {
+		
+		$themesupport = get_theme_support( 'html5' );
+		$support_comment_list = ( is_array($themesupport) && in_array('comment-list', $themesupport) ) ? true : false;
+
+		// add fix for xhtml comments
+		if ( $support_comment_list === false ) {
+ 			add_action('comment_text', array( $this, 'get_html5_comment_content' ) );
+		} 
+	}
+
+
 	/**
 	 * This function sets the comments_array working fine
 	 *
-	 * @param 	string 	$ctext
+	 * @param 	string 	$comment_text
 	 * @return 	string 	comment text with comment images
 	 *
 	 */
-	function get_html5_comment_content( $ctext ){  // 
+	function get_html5_comment_content( $comment_text ){  // 
+		
+		$cid = intval(get_comment_ID());
 
-		return get_comment_text();
+		if ( is_numeric($cid) ) {
+			return get_comment_text();
+		} else {
+			return $comment_text;
+		}
 
 	}
 
@@ -489,7 +510,7 @@ class Comment_Image_Reloaded {
 		
 		//if ( !isset(self::$options['show_brand_img']) || empty(self::$options['show_brand_img']) ){
 		if ( isset(self::$options['show_brand_img']) || !empty(self::$options['show_brand_img']) ){
-			echo "<style>.cir-link{height:30px;display:inline-block;width:117px;overflow:hidden;}.cir-link,.cir-link img{padding:0;margin:0;border:0}.cir-link:hover img{position:relative;bottom:30px}</style>\n";
+			echo "<style>.cir-link{height:20px;display:block;width:90px;overflow:hidden;}.cir-link,.cir-link img{padding:0;margin:0;border:0}.cir-link:hover img{position:relative;bottom:20px}</style>\n";
 		}
 	}
 
@@ -498,6 +519,8 @@ class Comment_Image_Reloaded {
 	 * Adds the public JavaScript to the single post page.
 	 */
 	function add_scripts() {
+
+		global $wp_scripts;
 
 		if ( is_single() || is_page() ) {
 
@@ -591,7 +614,7 @@ class Comment_Image_Reloaded {
 			? $option['disable_comment_images'] 
 			: '';
 
-		$logoimg = '<img src="data:image/png;base64,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" alt="wp-puzzle.com logo">';
+		$logoimg = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAAAoCAYAAAB+Qu3IAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNzU2NkRBNDY2RDFFNTExQkUxNUNGNEE1REE1M0E4RiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0RUMxMzg5OEQ0QjYxMUU1ODQwQTlDMDI4MjI5QTdFQyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0RUMxMzg5N0Q0QjYxMUU1ODQwQTlDMDI4MjI5QTdFQyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjgxMTA0OEQzQjVENEU1MTFCREQ1QTE1NDk0MjRBRjI1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY3NTY2REE0NjZEMUU1MTFCRTE1Q0Y0QTVEQTUzQThGIi8+IDwvcmRmOkRlc2NyaXB0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" alt="wp-puzzle.com logo">';
 
 		//$brand_img = ( !empty($option['show_brand_img']) && 'disable'==$option['show_brand_img'] ) 
 		$brand_img = ( !empty($option['show_brand_img']) && 'enable'==$option['show_brand_img'] ) 
@@ -612,12 +635,12 @@ class Comment_Image_Reloaded {
 				$html .= $brand_img;
 			 $html .= '</div><!-- #comment-image-wrapper -->';
 
-			 echo $html;
-			 // $fields['comment_notes_after'] = $html;
+			echo $html;
+			// $fields['comment_notes_after'] = $html;
 
-		 } // end if
+		} // end if
 
-		 // return $fields;
+		// return $fields;
 
 	} // end add_image_upload_form
 
@@ -1187,7 +1210,15 @@ class Comment_Image_Reloaded {
 		add_settings_field( 
 			'show_brand_img', 
 			__("Author's link", 'comment-images'),
-			array( 'Comment_Image_Reloaded', 'CIR_show_brand_img'), 
+			array( 'Comment_Image_Reloaded', 'CIR_show_brand_img_render'), 
+			'CI_reloaded_settings_page', 
+			'CI_reloaded_checkbox_settings' 
+		);	
+
+		add_settings_field( 
+			'auto_echo', 
+			__("Upload file input", 'comment-images'),
+			array( 'Comment_Image_Reloaded', 'CIR_auto_echo_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
 		);		
@@ -1311,7 +1342,7 @@ class Comment_Image_Reloaded {
 	//
 	// Render show brand img
 	//
-	public static function CIR_show_brand_img(){
+	public static function CIR_show_brand_img_render(){
 		$option = '';
 		if( isset(self::$options['show_brand_img']) ) {
 			$option = self::$options['show_brand_img'];
@@ -1322,6 +1353,25 @@ class Comment_Image_Reloaded {
 		echo '<label><input type="checkbox" name="CI_reloaded_settings[show_brand_img]" value="enable" ' .checked( "enable", $option, false ) .' /> ';
 		echo __( "Check it to show author's link", 'comment-images') . '</label>';
 		echo '<p class="description">' . __('We place a small link under the image field, letting others know about our plugin. Thanks for your promotion!', 'comment-images') . '</p>';
+	}
+
+ 
+ 
+	//
+	// Render auto echo
+	//
+	public static function CIR_auto_echo_render(){
+		$option = '';
+		if( isset(self::$options['auto_echo']) ) {
+			$option = self::$options['auto_echo'];
+		} else {
+			$option = 'enable'; // default ON
+		}
+		echo '<label><input type="checkbox" name="CI_reloaded_settings[auto_echo]" value="disable" ' .checked( "disable", $option, false ) .' /> ';
+		echo __( "Check it to disable automatic show file upload field", 'comment-images') . '</label>';
+		echo '<p class="description">' . __('For manual show input, place code into your template:', 'comment-images') 
+				. '<br>' . __( 'echo html', 'comment-images') . ': <code>&lt;?php if (function_exists("the_cir_upload_field")) { the_cir_upload_field(); } ?&gt;</code>'
+				. '<br>' . __( 'return value', 'comment-images') . ': <code>&lt;?php if (function_exists("get_cir_upload_field")) { get_cir_upload_field(); } ?&gt;</code></p>';
 	}
 
 
