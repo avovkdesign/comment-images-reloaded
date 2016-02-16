@@ -508,8 +508,8 @@ class Comment_Image_Reloaded {
 	 */
 	function add_authorslink_style() {
 		
-		//if ( !isset(self::$options['show_brand_img']) || empty(self::$options['show_brand_img']) ){
-		if ( isset(self::$options['show_brand_img']) || !empty(self::$options['show_brand_img']) ){
+		if ( !isset(self::$options['show_brand_img']) || 'disable' != self::$options['show_brand_img'] ){
+		// if ( isset(self::$options['show_brand_img']) || !empty(self::$options['show_brand_img']) ){
 			echo "<style>.cir-link{height:20px;display:block;width:90px;overflow:hidden;}.cir-link,.cir-link img{padding:0;margin:0;border:0}.cir-link:hover img{position:relative;bottom:20px}</style>\n";
 		}
 	}
@@ -616,10 +616,10 @@ class Comment_Image_Reloaded {
 
 		$logoimg = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAAAoCAYAAAB+Qu3IAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNzU2NkRBNDY2RDFFNTExQkUxNUNGNEE1REE1M0E4RiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0RUMxMzg5OEQ0QjYxMUU1ODQwQTlDMDI4MjI5QTdFQyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0RUMxMzg5N0Q0QjYxMUU1ODQwQTlDMDI4MjI5QTdFQyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjgxMTA0OEQzQjVENEU1MTFCREQ1QTE1NDk0MjRBRjI1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY3NTY2REE0NjZEMUU1MTFCRTE1Q0Y0QTVEQTUzQThGIi8+IDwvcmRmOkRlc2NyaXB0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" alt="wp-puzzle.com logo">';
 
-		//$brand_img = ( !empty($option['show_brand_img']) && 'disable'==$option['show_brand_img'] ) 
-		$brand_img = ( !empty($option['show_brand_img']) && 'enable'==$option['show_brand_img'] ) 
-			? '<a href="http://wp-puzzle.com/" rel="external nofollow" target="_blank" class="cir-link">'. $logoimg .'</a>'
-			: '';
+		// $brand_img = ( !empty($option['show_brand_img']) && 'enable'==$option['show_brand_img'] ) 
+		$brand_img = ( !empty($option['show_brand_img']) && 'disable'==$option['show_brand_img'] ) 
+			? ''
+			: '<a href="http://wp-puzzle.com/" rel="external nofollow" target="_blank" class="cir-link">'. $logoimg .'</a>';
 
 		// Create the label and the input field for uploading an image
 	 	if( 'disable' != $all_posts_state  && $current_post_state == 'enable' ){
@@ -1347,11 +1347,11 @@ class Comment_Image_Reloaded {
 		if( isset(self::$options['show_brand_img']) ) {
 			$option = self::$options['show_brand_img'];
 		} else {
-			//$option = 'enable'; // default link ON
-			$option = 'disable'; // default link OFF
+			$option = 'enable'; // default link ON
+			// $option = 'disable'; // default link OFF
 		}
-		echo '<label><input type="checkbox" name="CI_reloaded_settings[show_brand_img]" value="enable" ' .checked( "enable", $option, false ) .' /> ';
-		echo __( "Check it to show author's link", 'comment-images') . '</label>';
+		echo '<label><input type="checkbox" name="CI_reloaded_settings[show_brand_img]" value="disable" ' .checked( "disable", $option, false ) .' /> ';
+		echo __( "Check it to hide author's link", 'comment-images') . '</label>';
 		echo '<p class="description">' . __('We place a small link under the image field, letting others know about our plugin. Thanks for your promotion!', 'comment-images') . '</p>';
 	}
 

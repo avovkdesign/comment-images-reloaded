@@ -1,6 +1,6 @@
 <?php
 /* ====================================================================================================
- *	Plugin Name: Comment Image Reloaded 
+ *	Plugin Name: Comment Images Reloaded 
  *	Description: Plugin allows visitors attach images to comments (reloaded version <a href="https://wordpress.org/plugins/comment-images/">Comment Image by Tom McFarlin</a>).
  *	Plugin URI: http://wp-puzzle.com/comment-images-reloaded/
  *  Author: WP Puzzle 

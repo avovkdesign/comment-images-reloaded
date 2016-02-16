@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: comment-images-ru_RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-16 16:13+0200\n"
-"PO-Revision-Date: 2016-02-16 16:14+0200\n"
+"POT-Creation-Date: 2016-02-16 17:03+0200\n"
+"PO-Revision-Date: 2016-02-16 17:04+0200\n"
 "Last-Translator: Alexandra Vovk <avovkdesign@gmail.com>\n"
 "Language-Team: WP Puzzle <wppuzzle@gmail.com>\n"
 "Language: ru_RU\n"
@@ -211,8 +211,8 @@ msgstr ""
 "Magnific)"
 
 #: ../class-comment-image-reloaded.php:1354
-msgid "Check it to show author's link"
-msgstr "Отметьте эту галочку, чтобы показать авторскую ссылку"
+msgid "Check it to hide author's link"
+msgstr "Отметьте эту галочку, чтобы скрыть авторскую ссылку"
 
 #: ../class-comment-image-reloaded.php:1355
 msgid ""

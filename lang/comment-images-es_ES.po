@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Comment Images 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-12 22:47+0200\n"
-"PO-Revision-Date: 2016-02-12 22:47+0200\n"
+"POT-Creation-Date: 2016-02-16 17:04+0200\n"
+"PO-Revision-Date: 2016-02-16 17:04+0200\n"
 "Last-Translator: Alexandra Vovk <avovkdesign@gmail.com>\n"
 "Language-Team: Tom McFarlin <tom@tommcfarlin.com>\n"
 "Language: en_US\n"
@@ -15,30 +15,30 @@ msgstr ""
 "X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../class-comment-image-reloaded.php:180
-#: ../class-comment-image-reloaded.php:306
-#: ../class-comment-image-reloaded.php:916
-#: ../class-comment-image-reloaded.php:925
+#: ../class-comment-image-reloaded.php:178
+#: ../class-comment-image-reloaded.php:336
+#: ../class-comment-image-reloaded.php:951
+#: ../class-comment-image-reloaded.php:960
 msgid "Comment Images"
 msgstr "Imagenes de comentario"
 
-#: ../class-comment-image-reloaded.php:228
+#: ../class-comment-image-reloaded.php:249
 msgid "View Post Comment Images"
 msgstr "Vea los imagenes de comtentaro"
 
-#: ../class-comment-image-reloaded.php:254
+#: ../class-comment-image-reloaded.php:275
 msgid "Comment Image"
 msgstr "Imagen de comentario"
 
-#: ../class-comment-image-reloaded.php:279
+#: ../class-comment-image-reloaded.php:307
 msgid "Delete image"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:450
+#: ../class-comment-image-reloaded.php:480
 msgid "Updated "
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:467
+#: ../class-comment-image-reloaded.php:497
 msgid ""
 "<strong>Comment Images Notice:</strong> Unfortunately, your host does not "
 "allow uploads from the comment form. This plugin will not work for your host."
@@ -47,7 +47,7 @@ msgstr ""
 "web no permite subir imagenes de comentarios. Esta plugin no funciona con "
 "este servidor."
 
-#: ../class-comment-image-reloaded.php:514
+#: ../class-comment-image-reloaded.php:548
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an invalid image. If "
 "saved, this image will not display with your comment."
@@ -55,152 +55,172 @@ msgstr ""
 "<strong>Atención!</strong> Estás probando subir un formato de imagen que no "
 "es permitido. Si esta guardado, no se aparece con su comentario."
 
-#: ../class-comment-image-reloaded.php:515
+#: ../class-comment-image-reloaded.php:549
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an image that is too "
 "large. If saved, this image will not be uploaded.<br />The maximum file size "
 "is: "
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:537
+#: ../class-comment-image-reloaded.php:571
 msgid "Do you want to permanently delete an image attached to this comment?"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:538
+#: ../class-comment-image-reloaded.php:572
 msgid "Image deleted!"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:552
+#: ../class-comment-image-reloaded.php:586
 msgid ""
 "By doing this, you will toggle Comment Images for all posts on your blog. "
 "Are you sure you want to do this?"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:595
-#: ../class-comment-image-reloaded.php:1275
+#: ../class-comment-image-reloaded.php:629
+#: ../class-comment-image-reloaded.php:1318
 msgid "Select an image for your comment (GIF, PNG, JPG, JPEG):"
 msgstr "Selecciona un imagen para su comentario (GIF, PNG, JPG, JPEG)"
 
-#: ../class-comment-image-reloaded.php:635
+#: ../class-comment-image-reloaded.php:669
 msgid "Error: Uploaded file is too large. <br/> Go back to: "
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:644
+#: ../class-comment-image-reloaded.php:678
 msgid "Unknown error occurred while loading image.<br/> Go back to: "
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:945
+#: ../class-comment-image-reloaded.php:980
 msgid "Doing this will only update <strong>this</strong> post."
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:947
+#: ../class-comment-image-reloaded.php:982
 msgid "Enable comment images for this post."
 msgstr "Activar imagenes para los comtentarios de esta post."
 
-#: ../class-comment-image-reloaded.php:948
+#: ../class-comment-image-reloaded.php:983
 msgid "Disable comment images for this post."
 msgstr "Desactivar imagenes para los comentarios de este post."
 
-#: ../class-comment-image-reloaded.php:1037
+#: ../class-comment-image-reloaded.php:1072
 msgid "image"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1037
+#: ../class-comment-image-reloaded.php:1072
 msgid "images"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1037
+#: ../class-comment-image-reloaded.php:1072
 msgid "images."
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1120
+#: ../class-comment-image-reloaded.php:1155
 msgid "Import from Comment Images"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1127
+#: ../class-comment-image-reloaded.php:1162
 msgid "Comment Images import"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1138
+#: ../class-comment-image-reloaded.php:1173
 msgid "Settings Comment Images Reloaded"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1145
+#: ../class-comment-image-reloaded.php:1180
 msgid "Image size"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1153
+#: ../class-comment-image-reloaded.php:1188
 msgid "Maximum file size"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1161
+#: ../class-comment-image-reloaded.php:1196
 msgid "Text before input"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1169
+#: ../class-comment-image-reloaded.php:1204
 msgid "Images zoom"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1177
+#: ../class-comment-image-reloaded.php:1212
 msgid "Author's link"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1185
+#: ../class-comment-image-reloaded.php:1220
+msgid "Upload file input"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1228
 msgid "Disable for all"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1200
+#: ../class-comment-image-reloaded.php:1243
 msgid "Import all images data"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1201
+#: ../class-comment-image-reloaded.php:1244
 msgid ""
 "You can import data from original Comment Images plugin. This is leave all "
 "data without deleting anything"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1237
+#: ../class-comment-image-reloaded.php:1280
 msgid "Original size of the image"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1242
+#: ../class-comment-image-reloaded.php:1285
 msgid ""
 "Converting all images from Comment Images to Comment Images Reloaded. "
 "Disable old plugin to avoid dublicating the images in comments. You can "
 "allways revert to old plugin"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1260
+#: ../class-comment-image-reloaded.php:1303
 msgid " bytes"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1261
+#: ../class-comment-image-reloaded.php:1304
 msgid "Maximum allowed file size "
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1261
+#: ../class-comment-image-reloaded.php:1304
 msgid "php.ini settings"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1278
+#: ../class-comment-image-reloaded.php:1321
 msgid "Enter custom title for file input field"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1294
+#: ../class-comment-image-reloaded.php:1337
 msgid "Enable image zoom on click (it work with Magnific Popup jQuery plugin)"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1311
-msgid "Check it to show author's link"
+#: ../class-comment-image-reloaded.php:1354
+msgid "Check it to hide author's link"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1312
+#: ../class-comment-image-reloaded.php:1355
 msgid ""
 "We place a small link under the image field, letting others know about our "
 "plugin. Thanks for your promotion!"
 msgstr ""
 
-#: ../class-comment-image-reloaded.php:1328
+#: ../class-comment-image-reloaded.php:1371
+msgid "Check it to disable automatic show file upload field"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1372
+msgid "For manual show input, place code into your template:"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1373
+msgid "echo html"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1374
+msgid "return value"
+msgstr ""
+
+#: ../class-comment-image-reloaded.php:1390
 msgid "Deactivate images for all posts"
 msgstr ""
 
