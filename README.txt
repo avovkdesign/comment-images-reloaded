@@ -4,7 +4,7 @@ Tags: comment, image, attachment, images, comments, attachments, image zoom
 Donate link: http://avovkdesign.com/bymecoffee
 Requires at least: 3.2
 Tested up to: 4.4.2
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later 
 
 Плагин позволяет посетителям загружать свои фото при публикации комментария.
