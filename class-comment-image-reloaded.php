@@ -190,10 +190,13 @@ class Comment_Image_Reloaded {
 	public function support_comment_list() {
 		
 		$themesupport = get_theme_support( 'html5' );
-		$support_comment_list = ( is_array($themesupport) && in_array('comment-list', $themesupport) ) ? true : false;
+		$themesupport = ( is_array($themesupport[0]) ) ? $themesupport[0] : $themesupport;
+
+		$support_comment_list = ( is_array($themesupport) && in_array('comment-list', $themesupport) ) 
+			? true : false;
 
 		// add fix for xhtml comments
-		if ( $support_comment_list === false ) {
+		if ( false === $support_comment_list ) {
  			add_action('comment_text', array( $this, 'get_html5_comment_content' ) );
 		} 
 	}

@@ -5,7 +5,7 @@
  *	Plugin URI: http://wp-puzzle.com/comment-images-reloaded/
  *  Author: WP Puzzle 
  *  Author URI: http://wp-puzzle.com/
- *	Version: 2.1.2
+ *	Version: 2.1.3
  * ==================================================================================================== */
 
 
