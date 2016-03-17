@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: comment-images-ru_RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-16 17:03+0200\n"
-"PO-Revision-Date: 2016-02-16 17:04+0200\n"
+"POT-Creation-Date: 2016-03-17 16:08+0200\n"
+"PO-Revision-Date: 2016-03-17 16:08+0200\n"
 "Last-Translator: Alexandra Vovk <avovkdesign@gmail.com>\n"
 "Language-Team: WP Puzzle <wppuzzle@gmail.com>\n"
 "Language: ru_RU\n"
@@ -17,30 +17,25 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../class-comment-image-reloaded.php:178
-#: ../class-comment-image-reloaded.php:336
-#: ../class-comment-image-reloaded.php:951
-#: ../class-comment-image-reloaded.php:960
-msgid "Comment Images"
-msgstr "Изображения в комментариях"
-
-#: ../class-comment-image-reloaded.php:249
-msgid "View Post Comment Images"
-msgstr "Смотреть изображения в комментариях"
-
-#: ../class-comment-image-reloaded.php:275
+#: ../class-comment-image-reloaded.php:224
 msgid "Comment Image"
 msgstr "Изображение"
 
-#: ../class-comment-image-reloaded.php:307
+#: ../class-comment-image-reloaded.php:256
 msgid "Delete image"
 msgstr "Удалить картинку"
 
-#: ../class-comment-image-reloaded.php:480
+#: ../class-comment-image-reloaded.php:285
+#: ../class-comment-image-reloaded.php:900
+#: ../class-comment-image-reloaded.php:909
+msgid "Comment Images"
+msgstr "Изображения в комментариях"
+
+#: ../class-comment-image-reloaded.php:429
 msgid "Updated "
 msgstr "Найдено "
 
-#: ../class-comment-image-reloaded.php:497
+#: ../class-comment-image-reloaded.php:446
 msgid ""
 "<strong>Comment Images Notice:</strong> Unfortunately, your host does not "
 "allow uploads from the comment form. This plugin will not work for your host."
@@ -49,7 +44,7 @@ msgstr ""
 "сконфигурирован таким образом, что не позволяет сохранять файлы из формы "
 "комментирования. Плагин не будет работать на вашем сервере."
 
-#: ../class-comment-image-reloaded.php:548
+#: ../class-comment-image-reloaded.php:497
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an invalid image. If "
 "saved, this image will not display with your comment."
@@ -57,7 +52,7 @@ msgstr ""
 "Внимание! Вы пытаетесь загрузить неверное изображение, поэтому оно не будет "
 "прикреплено к вашему комментарию."
 
-#: ../class-comment-image-reloaded.php:549
+#: ../class-comment-image-reloaded.php:498
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an image that is too "
 "large. If saved, this image will not be uploaded.<br />The maximum file size "
@@ -66,16 +61,16 @@ msgstr ""
 "Внимание! Вы пытаетесь загрузить слишком большой файл. При сохранении "
 "комментария, файл не будет прикреплен! Максимальный размер файла:"
 
-#: ../class-comment-image-reloaded.php:571
+#: ../class-comment-image-reloaded.php:520
 msgid "Do you want to permanently delete an image attached to this comment?"
 msgstr ""
 "Вы хотите полностью удалить картинку, прикрепленную к этому комментарию?"
 
-#: ../class-comment-image-reloaded.php:572
+#: ../class-comment-image-reloaded.php:521
 msgid "Image deleted!"
 msgstr "Картинка удалена!"
 
-#: ../class-comment-image-reloaded.php:586
+#: ../class-comment-image-reloaded.php:535
 msgid ""
 "By doing this, you will toggle Comment Images for all posts on your blog. "
 "Are you sure you want to do this?"
@@ -83,88 +78,88 @@ msgstr ""
 "Сделав это, Вы отключите Comment Images Reloaded для всех записей на блоге. "
 "Вы точно хотите сделать это?"
 
-#: ../class-comment-image-reloaded.php:629
-#: ../class-comment-image-reloaded.php:1318
+#: ../class-comment-image-reloaded.php:578
+#: ../class-comment-image-reloaded.php:1267
 msgid "Select an image for your comment (GIF, PNG, JPG, JPEG):"
 msgstr "Выберите изображение для вашего комментария (GIF, PNG, JPG, JPEG):"
 
-#: ../class-comment-image-reloaded.php:669
+#: ../class-comment-image-reloaded.php:618
 msgid "Error: Uploaded file is too large. <br/> Go back to: "
 msgstr "Ошибка! Загружаемый файл слишком большой.<br/> Вернуться:"
 
-#: ../class-comment-image-reloaded.php:678
+#: ../class-comment-image-reloaded.php:627
 msgid "Unknown error occurred while loading image.<br/> Go back to: "
 msgstr "Во время загрузки фала произошла неизвестная ошибка!<br/> Вернуться:"
 
-#: ../class-comment-image-reloaded.php:980
+#: ../class-comment-image-reloaded.php:929
 msgid "Doing this will only update <strong>this</strong> post."
 msgstr "Для текущей записи:"
 
-#: ../class-comment-image-reloaded.php:982
+#: ../class-comment-image-reloaded.php:931
 msgid "Enable comment images for this post."
 msgstr "Разрешить изображения"
 
-#: ../class-comment-image-reloaded.php:983
+#: ../class-comment-image-reloaded.php:932
 msgid "Disable comment images for this post."
 msgstr "Запретить изображения"
 
-#: ../class-comment-image-reloaded.php:1072
+#: ../class-comment-image-reloaded.php:1021
 msgid "image"
 msgstr "изображение"
 
-#: ../class-comment-image-reloaded.php:1072
+#: ../class-comment-image-reloaded.php:1021
 msgid "images"
 msgstr "изображения"
 
-#: ../class-comment-image-reloaded.php:1072
+#: ../class-comment-image-reloaded.php:1021
 msgid "images."
 msgstr "изображений"
 
-#: ../class-comment-image-reloaded.php:1155
+#: ../class-comment-image-reloaded.php:1104
 msgid "Import from Comment Images"
 msgstr "Импортировать данные из Comment Images"
 
-#: ../class-comment-image-reloaded.php:1162
+#: ../class-comment-image-reloaded.php:1111
 msgid "Comment Images import"
 msgstr "Переход с Comment Images"
 
-#: ../class-comment-image-reloaded.php:1173
+#: ../class-comment-image-reloaded.php:1122
 msgid "Settings Comment Images Reloaded"
 msgstr "Настройки Comment Images Reloaded"
 
-#: ../class-comment-image-reloaded.php:1180
+#: ../class-comment-image-reloaded.php:1129
 msgid "Image size"
 msgstr "Размер изображения"
 
-#: ../class-comment-image-reloaded.php:1188
+#: ../class-comment-image-reloaded.php:1137
 msgid "Maximum file size"
 msgstr "Максимальный размер файла"
 
-#: ../class-comment-image-reloaded.php:1196
+#: ../class-comment-image-reloaded.php:1145
 msgid "Text before input"
 msgstr "Текст перед вставкой картинки"
 
-#: ../class-comment-image-reloaded.php:1204
+#: ../class-comment-image-reloaded.php:1153
 msgid "Images zoom"
 msgstr "Увеличение изображений"
 
-#: ../class-comment-image-reloaded.php:1212
+#: ../class-comment-image-reloaded.php:1161
 msgid "Author's link"
 msgstr "Авторская ссылка"
 
-#: ../class-comment-image-reloaded.php:1220
+#: ../class-comment-image-reloaded.php:1169
 msgid "Upload file input"
 msgstr "Поле вставки изображения"
 
-#: ../class-comment-image-reloaded.php:1228
+#: ../class-comment-image-reloaded.php:1177
 msgid "Disable for all"
 msgstr "Отключить для всех"
 
-#: ../class-comment-image-reloaded.php:1243
+#: ../class-comment-image-reloaded.php:1192
 msgid "Import all images data"
 msgstr "Импортировать все данные картинок"
 
-#: ../class-comment-image-reloaded.php:1244
+#: ../class-comment-image-reloaded.php:1193
 msgid ""
 "You can import data from original Comment Images plugin. This is leave all "
 "data without deleting anything"
@@ -173,11 +168,11 @@ msgstr ""
 "плагина Comment Images. Эта операция не удалит данные и вы сможете в любое "
 "время вернуться на Comment Images."
 
-#: ../class-comment-image-reloaded.php:1280
+#: ../class-comment-image-reloaded.php:1229
 msgid "Original size of the image"
 msgstr "Оригинальный размер изображения"
 
-#: ../class-comment-image-reloaded.php:1285
+#: ../class-comment-image-reloaded.php:1234
 msgid ""
 "Converting all images from Comment Images to Comment Images Reloaded. "
 "Disable old plugin to avoid dublicating the images in comments. You can "
@@ -187,34 +182,34 @@ msgstr ""
 "Отключите старый плагин для предотвращения дублирования изображений в "
 "комментариях. Вы всегда сможете вернуться к старому плагину"
 
-#: ../class-comment-image-reloaded.php:1303
+#: ../class-comment-image-reloaded.php:1252
 msgid " bytes"
 msgstr " байт"
 
-#: ../class-comment-image-reloaded.php:1304
+#: ../class-comment-image-reloaded.php:1253
 msgid "Maximum allowed file size "
 msgstr "Максимально допустимый размер файла"
 
-#: ../class-comment-image-reloaded.php:1304
+#: ../class-comment-image-reloaded.php:1253
 msgid "php.ini settings"
 msgstr "настройки php.ini"
 
-#: ../class-comment-image-reloaded.php:1321
+#: ../class-comment-image-reloaded.php:1270
 msgid "Enter custom title for file input field"
 msgstr ""
 "Укажите свой текст, который нужно показать перед полем добавления картинки"
 
-#: ../class-comment-image-reloaded.php:1337
+#: ../class-comment-image-reloaded.php:1286
 msgid "Enable image zoom on click (it work with Magnific Popup jQuery plugin)"
 msgstr ""
 "Включить увеличение (зум) картинок по клику (работает с jQuery скриптом "
 "Magnific)"
 
-#: ../class-comment-image-reloaded.php:1354
+#: ../class-comment-image-reloaded.php:1303
 msgid "Check it to hide author's link"
 msgstr "Отметьте эту галочку, чтобы скрыть авторскую ссылку"
 
-#: ../class-comment-image-reloaded.php:1355
+#: ../class-comment-image-reloaded.php:1304
 msgid ""
 "We place a small link under the image field, letting others know about our "
 "plugin. Thanks for your promotion!"
@@ -222,29 +217,32 @@ msgstr ""
 "Мы пазмещаем ссылку под полем добавления картинки, позволяя посетителям "
 "узнать о нашем плагине. Благодарим Вам за помощь в продвижении плагина! "
 
-#: ../class-comment-image-reloaded.php:1371
+#: ../class-comment-image-reloaded.php:1320
 msgid "Check it to disable automatic show file upload field"
 msgstr ""
 "Отметьте эту галочку, чтобы отключить автоматический вывод в форме "
 "комментария поля для загрузки картинки"
 
-#: ../class-comment-image-reloaded.php:1372
+#: ../class-comment-image-reloaded.php:1321
 msgid "For manual show input, place code into your template:"
 msgstr ""
 "Чтобы вручную вывести поле для загрузки картинки, вставьте следующий код в "
 "свой шаблон:"
 
-#: ../class-comment-image-reloaded.php:1373
+#: ../class-comment-image-reloaded.php:1322
 msgid "echo html"
 msgstr "печатает HTML"
 
-#: ../class-comment-image-reloaded.php:1374
+#: ../class-comment-image-reloaded.php:1323
 msgid "return value"
 msgstr "возвращает в переменную"
 
-#: ../class-comment-image-reloaded.php:1390
+#: ../class-comment-image-reloaded.php:1339
 msgid "Deactivate images for all posts"
 msgstr "Запретить добавление изображений для всех записей"
+
+#~ msgid "View Post Comment Images"
+#~ msgstr "Смотреть изображения в комментариях"
 
 #~ msgid "Settings"
 #~ msgstr "Настройки"

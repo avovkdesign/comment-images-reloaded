@@ -221,7 +221,7 @@ class Comment_Image_Reloaded {
 	  */
 	 public function comment_has_image( $columns ) {
 
-		 $columns['comment-image-reloaded'] = __( 'Comment Image', 'comment-images' );
+		 $columns['comment-image-reloaded'] = __( 'Comment Image', 'comment-images-reloaded' );
 
 		 return $columns;
 
@@ -253,7 +253,7 @@ class Comment_Image_Reloaded {
 				$html = '<img src="' . $image_url . '" width="150" style="max-width:100%"/>';
 				$html .= '<div class="row-actions">';
 				$html .= '<button class="button delete-cid" data-cid=' . $comment_id . '" data-aid="'. $comment_image_data .'">';
-				$html .= __( 'Delete image', 'comment-images' );
+				$html .= __( 'Delete image', 'comment-images-reloaded' );
 				$html .= '</button>';
 				$html .= '</div>';
 
@@ -282,7 +282,7 @@ class Comment_Image_Reloaded {
 		 if ( !is_wp_error($comment_image) && is_numeric($comment_image) && !empty($comment_image) ) {
 
 			 $html = '<a href="edit-comments.php?p=' . $comment->comment_post_ID . '">';
-			 	$html .= __( 'Comment Images', 'comment-images' );
+			 	$html .= __( 'Comment Images', 'comment-images-reloaded' );
 			 $html .= '</a>';
 
 			 $options['comment-images'] = $html;
@@ -299,7 +299,7 @@ class Comment_Image_Reloaded {
 	  * Loads the plugin text domain for translation
 	  */
 	 function plugin_textdomain() {
-		 load_plugin_textdomain( 'comment-images', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
+		 load_plugin_textdomain( 'comment-images-reloaded', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
 	 } // end plugin_textdomain
 
 	 /**
@@ -426,7 +426,7 @@ class Comment_Image_Reloaded {
 
 		} // end foreach
 
-		$response = __('Updated ','comment-images') . $counter .' '. self::num_word($counter) . $dump;
+		$response = __( 'Updated ', 'comment-images-reloaded' ) . $counter .' '. self::num_word($counter) . $dump;
 
 		echo $response;
 		// wp_die();
@@ -443,7 +443,7 @@ class Comment_Image_Reloaded {
 
 		 $html = '<div id="comment-image-notice" class="error">';
 		 	$html .= '<p>';
-		 		$html .= __( '<strong>Comment Images Notice:</strong> Unfortunately, your host does not allow uploads from the comment form. This plugin will not work for your host.', 'comment-images' );
+		 		$html .= __( '<strong>Comment Images Notice:</strong> Unfortunately, your host does not allow uploads from the comment form. This plugin will not work for your host.', 'comment-images-reloaded' );
 		 	$html .= '</p>';
 		 $html .= '</div><!-- /#comment-image-notice -->';
 
@@ -494,8 +494,8 @@ class Comment_Image_Reloaded {
             	'comment-images-reloaded',
             	'cm_imgs',
             	array(
-                	'fileTypeError' => __( '<strong>Heads up!</strong> You are attempting to upload an invalid image. If saved, this image will not display with your comment.', 'comment-images' ),
-					'fileSizeError' => __( '<strong>Heads up!</strong> You are attempting to upload an image that is too large. If saved, this image will not be uploaded.<br />The maximum file size is: ', 'comment-images' ),
+                	'fileTypeError' => __( '<strong>Heads up!</strong> You are attempting to upload an invalid image. If saved, this image will not display with your comment.', 'comment-images-reloaded' ),
+					'fileSizeError' => __( '<strong>Heads up!</strong> You are attempting to upload an image that is too large. If saved, this image will not be uploaded.<br />The maximum file size is: ', 'comment-images-reloaded' ),
 					'limitFileSize' => $this->limit_file_size
 				)
 			);
@@ -517,8 +517,8 @@ class Comment_Image_Reloaded {
 			'cmr_reloaded_ajax_object', 
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'before_delete_text' => __( 'Do you want to permanently delete an image attached to this comment?', 'comment-images' ),
-				'after_delete_text' => __( 'Image deleted!', 'comment-images' ),
+				'before_delete_text' => __( 'Do you want to permanently delete an image attached to this comment?', 'comment-images-reloaded' ),
+				'after_delete_text' => __( 'Image deleted!', 'comment-images-reloaded' ),
 			) 
 		);
 		wp_enqueue_script( 'comment-images-reloaded-ajax' );
@@ -532,7 +532,7 @@ class Comment_Image_Reloaded {
             	'comment-images-reloaded-admin',
             	'cm_imgs',
             	array(
-                	'toggleConfirm' => __( 'By doing this, you will toggle Comment Images for all posts on your blog. Are you sure you want to do this?', 'comment-images' )
+                	'toggleConfirm' => __( 'By doing this, you will toggle Comment Images for all posts on your blog. Are you sure you want to do this?', 'comment-images-reloaded' )
 				)
 			);
 
@@ -575,7 +575,7 @@ class Comment_Image_Reloaded {
 
 	 		$before = ( isset($option['before_title']) ) 
 	 			? $option['before_title'] 
-	 			: __( 'Select an image for your comment (GIF, PNG, JPG, JPEG):', 'comment-images' );
+	 			: __( 'Select an image for your comment (GIF, PNG, JPG, JPEG):', 'comment-images-reloaded' );
 
 		 	$html = '<div id="comment-image-reloaded-wrapper">';
 				$html .= '<p id="comment-image-reloaded-error"></p>';
@@ -615,7 +615,7 @@ class Comment_Image_Reloaded {
             // disable save files larger than $limit_filesize
             if ( $this->limit_file_size < $_FILES[ $comment_image_id ]['size'] ) {
 
-                echo __( "Error: Uploaded file is too large. <br/> Go back to: ", 'comment-images' );
+                echo __( 'Error: Uploaded file is too large. <br/> Go back to: ', 'comment-images-reloaded' );
                 echo '<a href="' . get_permalink( $post_id ) . '">' . get_the_title( $post_id ) . '</a>';
                 die;
 
@@ -624,7 +624,7 @@ class Comment_Image_Reloaded {
             // check errors 
             if ( !empty( $_FILES[ $comment_image_id ]['error'] ) ) {
 
-                echo __( "Unknown error occurred while loading image.<br/> Go back to: ", 'comment-images' );
+                echo __( 'Unknown error occurred while loading image.<br/> Go back to: ', 'comment-images-reloaded' );
                 echo '<a href="' . get_permalink( $post_id ) . '">' . get_the_title( $post_id ) . '</a>';
                 die;
 
@@ -897,7 +897,7 @@ class Comment_Image_Reloaded {
 
 		 add_meta_box(
 		 	'disable_comment_images_reloaded',
-		 	__( 'Comment Images', 'comment-images' ),
+		 	__( 'Comment Images', 'comment-images-reloaded' ),
 		 	array( $this, 'comment_images_display' ),
 		 	'post',
 		 	'side',
@@ -906,7 +906,7 @@ class Comment_Image_Reloaded {
 
 		 add_meta_box(
 		 	'disable_comment_images_reloaded',
-		 	__( 'Comment Images', 'comment-images' ),
+		 	__( 'Comment Images', 'comment-images-reloaded' ),
 		 	array( $this, 'comment_images_display' ),
 		 	'page',
 		 	'side',
@@ -926,10 +926,10 @@ class Comment_Image_Reloaded {
 
 		 wp_nonce_field( plugin_basename( __FILE__ ), 'comment_images_reloaded_display_nonce' );
 
-		 $html = '<p class="comment-image-info" style="text-align:center;color: #3a87ad;margin: 10px 0 10px 0;padding:10px;background-color: #d9edf7;border-left: 5px solid #3a87ad;">' . __( 'Doing this will only update <strong>this</strong> post.', 'comment-images' ) . '</p>';
+		 $html = '<p class="comment-image-info" style="text-align:center;color: #3a87ad;margin: 10px 0 10px 0;padding:10px;background-color: #d9edf7;border-left: 5px solid #3a87ad;">' . __( 'Doing this will only update <strong>this</strong> post.', 'comment-images-reloaded' ) . '</p>';
 		 $html .= '<select name="comment_images_reloaded_toggle" id="comment_images_reloaded_toggle" class="comment_images_reloaded_toggle_select" style="width:100%;">';
-		 	$html .= '<option value="enable" ' . selected( 'enable', get_post_meta( $post->ID, 'comment_images_reloaded_toggle', true ), false ) . '>' . __( 'Enable comment images for this post.', 'comment-images' ) . '</option>';
-		 	$html .= '<option value="disable" ' . selected( 'disable', get_post_meta( $post->ID, 'comment_images_reloaded_toggle', true ), false ) . '>' . __( 'Disable comment images for this post.', 'comment-images' ) . '</option>';
+		 	$html .= '<option value="enable" ' . selected( 'enable', get_post_meta( $post->ID, 'comment_images_reloaded_toggle', true ), false ) . '>' . __( 'Enable comment images for this post.', 'comment-images-reloaded' ) . '</option>';
+		 	$html .= '<option value="disable" ' . selected( 'disable', get_post_meta( $post->ID, 'comment_images_reloaded_toggle', true ), false ) . '>' . __( 'Disable comment images for this post.', 'comment-images-reloaded' ) . '</option>';
 		 $html .= '</select>';
 
 		 $html .= '<hr />';
@@ -1018,7 +1018,7 @@ class Comment_Image_Reloaded {
 	//
 	//
 	private static function num_word($num){
-		$words = array(__('image','comment-images'),__('images','comment-images'),__('images.','comment-images'));
+		$words = array(__( 'image', 'comment-images-reloaded' ),__( 'images', 'comment-images-reloaded' ),__( 'images.', 'comment-images-reloaded' ));
     	$num = $num % 100;
     		if ($num > 19) {
     			$num = $num % 10;
@@ -1101,14 +1101,14 @@ class Comment_Image_Reloaded {
 		//
 		add_settings_section(
 			'CIR_import', 
-			__('Import from Comment Images', 'comment-images'),
+			__( 'Import from Comment Images', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CI_reloaded_settings_section_callback'), 
 			'CI_reloaded_settings_page'
 		);
 
 		add_settings_field( 
 			'convert_images', 
-			__('Comment Images import','comment-images'), 
+			__( 'Comment Images import', 'comment-images-reloaded' ), 
 			array( 'Comment_Image_Reloaded', 'CI_reloaded_convert_images'), 
 			'CI_reloaded_settings_page', 
 			'CIR_import' 
@@ -1119,14 +1119,14 @@ class Comment_Image_Reloaded {
 		//
 		add_settings_section(
 			'CI_reloaded_checkbox_settings', 
-			__('Settings Comment Images Reloaded', 'comment-images'),
+			__( 'Settings Comment Images Reloaded', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CI_reloaded_settings_section_callback'), 
 			'CI_reloaded_settings_page'
 		);
 
 		add_settings_field( 
 			'image_size', 
-			__('Image size', 'comment-images'),
+			__( 'Image size', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CIR_imagesize_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
@@ -1134,7 +1134,7 @@ class Comment_Image_Reloaded {
 
 		add_settings_field( 
 			'max_filesize', 
-			__('Maximum file size', 'comment-images'),
+			__( 'Maximum file size', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CIR_maxfilesize_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
@@ -1142,7 +1142,7 @@ class Comment_Image_Reloaded {
 
 		add_settings_field( 
 			'before_title', 
-			__('Text before input', 'comment-images'),
+			__( 'Text before input', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CIR_beforetitle_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
@@ -1150,7 +1150,7 @@ class Comment_Image_Reloaded {
 		
 		add_settings_field( 
 			'image_zoom', 
-			__('Images zoom', 'comment-images'),
+			__( 'Images zoom', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CI_imageszoom_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
@@ -1158,7 +1158,7 @@ class Comment_Image_Reloaded {
 		
 		add_settings_field( 
 			'show_brand_img', 
-			__("Author's link", 'comment-images'),
+			__("Author's link", 'comment-images-reloaded'),
 			array( 'Comment_Image_Reloaded', 'CIR_show_brand_img_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
@@ -1166,7 +1166,7 @@ class Comment_Image_Reloaded {
 
 		add_settings_field( 
 			'auto_echo', 
-			__("Upload file input", 'comment-images'),
+			__( 'Upload file input', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CIR_auto_echo_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
@@ -1174,7 +1174,7 @@ class Comment_Image_Reloaded {
 
 		add_settings_field( 
 			'disable_comment_images', 
-			__('Disable for all', 'comment-images'),
+			__( 'Disable for all', 'comment-images-reloaded' ),
 			array( 'Comment_Image_Reloaded', 'CI_disableCIR_render'), 
 			'CI_reloaded_settings_page', 
 			'CI_reloaded_checkbox_settings' 
@@ -1189,8 +1189,8 @@ class Comment_Image_Reloaded {
 	// Render convert button
 	//
 	public static function CI_reloaded_convert_images(){
-		$html = '<input type="button" class="button" id="convert_images" value="' . __('Import all images data','comment-images') . '">';
-		$html .= '<p class="description">'. __('You can import data from original Comment Images plugin. This is leave all data without deleting anything','comment-images') .'</p>';
+		$html = '<input type="button" class="button" id="convert_images" value="' . __( 'Import all images data', 'comment-images-reloaded' ) . '">';
+		$html .= '<p class="description">'. __( 'You can import data from original Comment Images plugin. This is leave all data without deleting anything', 'comment-images-reloaded' ) .'</p>';
 		echo $html;
 	}
 
@@ -1226,12 +1226,12 @@ class Comment_Image_Reloaded {
 
 
 		$html .= '<input type="radio" id="radio_full" name="CI_reloaded_settings[image_size]" value="full"' . checked( 'full', self::$options['image_size'], false ) . '/>';
-	    $html .= '<label for="radio_full">full ('.__('Original size of the image', 'comment-images').')</label><br>';
+	    $html .= '<label for="radio_full">full ('.__( 'Original size of the image', 'comment-images-reloaded' ).')</label><br>';
 
 	 
 	    $html .= '<script type="text/javascript"> 
 	    			function my_alert(){ 
-	    				return confirm("'. __('Converting all images from Comment Images to Comment Images Reloaded. Disable old plugin to avoid dublicating the images in comments. You can allways revert to old plugin','comment-images').'");}</script>';
+	    				return confirm("'. __( 'Converting all images from Comment Images to Comment Images Reloaded. Disable old plugin to avoid dublicating the images in comments. You can allways revert to old plugin', 'comment-images-reloaded' ).'");}</script>';
 	    echo $html;
 	
 	} 
@@ -1249,8 +1249,8 @@ class Comment_Image_Reloaded {
 			: min( $phpini_limit, 5 );
 
 		echo '<label><input type="text" name="CI_reloaded_settings[max_filesize]" value="'. $val .'" /> MB</label> ';
-		echo '<code>'. self::MBtoB( $val ) . __(' bytes', 'comment-images') . '</code>';
-		echo '<p class="description">'. __('Maximum allowed file size ', 'comment-images') . $phpini_limit  . ' MB ('. __('php.ini settings', 'comment-images') .')</p>';
+		echo '<code>'. self::MBtoB( $val ) . __( ' bytes', 'comment-images-reloaded' ) . '</code>';
+		echo '<p class="description">'. __( 'Maximum allowed file size ', 'comment-images-reloaded' ) . $phpini_limit  . ' MB ('. __( 'php.ini settings', 'comment-images-reloaded' ) .')</p>';
 
 	}
 	
@@ -1264,10 +1264,10 @@ class Comment_Image_Reloaded {
 
 		$val = ( isset(self::$options['before_title']) ) 
 			? self::$options['before_title']
-			: __( 'Select an image for your comment (GIF, PNG, JPG, JPEG):', 'comment-images' );
+			: __( 'Select an image for your comment (GIF, PNG, JPG, JPEG):', 'comment-images-reloaded' );
 
 		echo '<input type="text" name="CI_reloaded_settings[before_title]" class="regular-text" value="'. $val .'" />';
-		echo '<p class="description">'. __('Enter custom title for file input field', 'comment-images') . '</p>';
+		echo '<p class="description">'. __( 'Enter custom title for file input field', 'comment-images-reloaded' ) . '</p>';
 
 	}
 
@@ -1283,7 +1283,7 @@ class Comment_Image_Reloaded {
 			$option = 'disable'; // default zoom OFF
 		}
 		echo '<label><input type="checkbox" name="CI_reloaded_settings[image_zoom]" value="enable" ' .checked( "enable", $option, false ) .' /> ';
-		echo __('Enable image zoom on click (it work with Magnific Popup jQuery plugin)', 'comment-images') . '</label>';
+		echo __( 'Enable image zoom on click (it work with Magnific Popup jQuery plugin)', 'comment-images-reloaded' ) . '</label>';
 	}
 
  
@@ -1300,8 +1300,8 @@ class Comment_Image_Reloaded {
 			// $option = 'disable'; // default link OFF
 		}
 		echo '<label><input type="checkbox" name="CI_reloaded_settings[show_brand_img]" value="disable" ' .checked( "disable", $option, false ) .' /> ';
-		echo __( "Check it to hide author's link", 'comment-images') . '</label>';
-		echo '<p class="description">' . __('We place a small link under the image field, letting others know about our plugin. Thanks for your promotion!', 'comment-images') . '</p>';
+		echo __( "Check it to hide author's link", 'comment-images-reloaded') . '</label>';
+		echo '<p class="description">' . __( 'We place a small link under the image field, letting others know about our plugin. Thanks for your promotion!', 'comment-images-reloaded' ) . '</p>';
 	}
 
  
@@ -1317,10 +1317,10 @@ class Comment_Image_Reloaded {
 			$option = 'enable'; // default ON
 		}
 		echo '<label><input type="checkbox" name="CI_reloaded_settings[auto_echo]" value="disable" ' .checked( "disable", $option, false ) .' /> ';
-		echo __( "Check it to disable automatic show file upload field", 'comment-images') . '</label>';
-		echo '<p class="description">' . __('For manual show input, place code into your template:', 'comment-images') 
-				. '<br>' . __( 'echo html', 'comment-images') . ': <code>&lt;?php if (function_exists("the_cir_upload_field")) { the_cir_upload_field(); } ?&gt;</code>'
-				. '<br>' . __( 'return value', 'comment-images') . ': <code>&lt;?php if (function_exists("get_cir_upload_field")) { get_cir_upload_field(); } ?&gt;</code></p>';
+		echo __( 'Check it to disable automatic show file upload field', 'comment-images-reloaded' ) . '</label>';
+		echo '<p class="description">' . __( 'For manual show input, place code into your template:', 'comment-images-reloaded' ) 
+				. '<br>' . __( 'echo html', 'comment-images-reloaded' ) . ': <code>&lt;?php if (function_exists("the_cir_upload_field")) { the_cir_upload_field(); } ?&gt;</code>'
+				. '<br>' . __( 'return value', 'comment-images-reloaded' ) . ': <code>&lt;?php if (function_exists("get_cir_upload_field")) { get_cir_upload_field(); } ?&gt;</code></p>';
 	}
 
 
@@ -1336,7 +1336,7 @@ class Comment_Image_Reloaded {
 			$option = 'enable'; // default it OFF
 		}
 		echo '<label><input type="checkbox" name="CI_reloaded_settings[disable_comment_images]" value="disable" ' .checked( "disable", $option, false ) .' /> ';
-		echo __('Deactivate images for all posts', 'comment-images') . '</label>';
+		echo __( 'Deactivate images for all posts', 'comment-images-reloaded' ) . '</label>';
 	}
 
 	//
