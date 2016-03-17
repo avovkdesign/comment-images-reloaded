@@ -11,8 +11,7 @@ class Comment_Image_Reloaded {
 	/*--------------------------------------------*
 	 * Constructor
 	 *--------------------------------------------*/
-	 
-	 
+	
 	/**
 	 * Instance of this class.
 	 *
@@ -110,14 +109,13 @@ class Comment_Image_Reloaded {
 			add_action( 'wp_ajax_cir_delete_image', array( $this, 'cir_delete_image') );
 
 			// Add the Upload input to the comment form
-			// add_action( 'comment_form_default_fields' , array( $this, 'add_image_upload_form' ) );
             $autofield = ( isset(self::$options['auto_echo']) && 'disable' == self::$options['auto_echo'] ) ? false : true; 
 			if ( $autofield ) {
 				add_action( 'comment_form' , array( $this, 'add_image_upload_form' ) );
 			}
 
 			add_filter( 'wp_insert_comment', array( $this, 'save_comment_image' ) );
-			add_filter( 'comments_array', array( $this, 'display_comment_image' ) );
+			add_filter( 'comments_array', array( $this, 'display_comment_image' ), 10, 2 );
 
 			// clean commentmeta when comments or media image deleted
 			add_filter( 'delete_comment', array( $this, 'clear_commentmeta_ondelete_comment' ) );
@@ -126,10 +124,6 @@ class Comment_Image_Reloaded {
 			// Add a note to recent comments that they have Comment Images
 			add_filter( 'comment_row_actions', array( $this, 'recent_comment_has_image' ), 20, 2 );
 
-			// Add a column to the Post editor indicating if there are Comment Images
-			add_filter( 'manage_posts_columns', array( $this, 'post_has_comment_images' ) );
-			add_filter( 'manage_posts_custom_column', array( $this, 'post_comment_images' ), 20, 2 );
-
 			// Add a column to the comment images if there is an image for the given comment
 			add_filter( 'manage_edit-comments_columns', array( $this, 'comment_has_image' ) );
 			add_filter( 'manage_comments_custom_column', array( $this, 'comment_image' ), 20, 2 );
@@ -137,7 +131,6 @@ class Comment_Image_Reloaded {
 			// Setup the Project Completion metabox
 			add_action( 'add_meta_boxes', array( $this, 'add_comment_image_meta_box' ) );
 			add_action( 'save_post', array( $this, 'save_comment_image_display' ) );
-
 
 			add_action( 'admin_init', array( $this, 'CI_reloaded_settings_init') );
 			add_action( 'admin_menu', array( $this, 'CI_reloaded_add_admin_menu') );
@@ -165,23 +158,6 @@ class Comment_Image_Reloaded {
 	 * Core Functions
 	 *---------------------------------------------*/
 
-	 /**
-	  * Adds a column to the 'All Posts' page indicating whether or not there are
-	  * Comment Images available for this post.
-	  *
-	  * @param	array	$cols	The columns displayed on the page.
-	  * @param	array	$cols	The updated array of columns.
-	  * @since	1.8
-	  */
-	public function post_has_comment_images( $cols ) {
-
-		$cols['comment-image-reloaded'] = __( 'Comment Images', 'comment-images' );
-
-		return $cols;
-
-	} // end post_has_comment_images
-
-
 
 	/**
 	 * Check html5 comment-list in theme supports
@@ -197,7 +173,7 @@ class Comment_Image_Reloaded {
 
 		// add fix for xhtml comments
 		if ( false === $support_comment_list ) {
- 			add_action('comment_text', array( $this, 'get_html5_comment_content' ) );
+ 			 add_action('comment_text', array( $this, 'get_html5_comment_content' ) );
 		} 
 	}
 
@@ -209,61 +185,31 @@ class Comment_Image_Reloaded {
 	 * @return 	string 	comment text with comment images
 	 *
 	 */
-	function get_html5_comment_content( $comment_text ){  // 
-		
-		$cid = intval(get_comment_ID());
+	function get_html5_comment_content( $comment_text ){  		
 
+		$cid = intval(get_comment_ID());
 		if ( is_numeric($cid) ) {
-			return get_comment_text();
-		} else {
-			return $comment_text;
-		}
+			$new_commtext = get_comment_text();
+			preg_match( '%(<p[^>]*class=["|\']comment-image-reloaded["|\'][^>]*>)(.*?)(<\/p>)%', $new_commtext, $matches_in_new );
+			preg_match( '%(<p[^>]*class=["|\']comment-image-reloaded["|\'][^>]*>)(.*?)(<\/p>)%', $comment_text, $matches_in_old );
+// echo '<pre>';
+// var_dump($matches_in_new);
+// echo '<hr>';
+// var_dump($matches_in_old);
+// echo '</pre>';
+
+			// if in filtered contentent image not exists and it exists in get_comment_text()
+			if ( empty($matches_in_old) && !empty($matches_in_new) ) {
+				$comment_text = $comment_text . $matches_in_new[0];
+				// print_r($matches_in_new);
+			}
+		} 
+
+		return $comment_text;
 
 	}
 
 
-	 /**
-	  * Provides a link to the specified post's comments page if the post has comments that contain
-	  * images.
-	  *
-	  * @param	string	$column_name	The name of the column being rendered.
-	  * @param	int		$int			The ID of the post being rendered.
-	  * @since	1.8
-	  */
-	 public function post_comment_images( $column_name, $post_id ) {
-
-		 if( 'comment-image-reloaded' == strtolower( $column_name ) ) {
-
-		 	// Get the comments for the current post.
-		 	$args = array(
-		 		'post_id' => $post_id
-		 	);
-		 	$comments = get_comments( $args );
-
-		 	// Look at each of the comments to determine if there's at least one comment image
-		 	$has_comment_image = false;
-		 	foreach( $comments as $comment ) {
-
-			 	// If the comment meta indicates there's a comment image and we've not yet indicated that it does...
-			 	if( 0 != get_comment_meta( $comment->comment_ID, 'comment_image_reloaded', true ) && ! $has_comment_image ) {
-
-			 		// ..Make a note in the column and link them to the media for that post
-					$html = '<a href="edit-comments.php?p=' . $comment->comment_post_ID . '">';
-						$html .= __( 'View Post Comment Images', 'comment-images' );
-					$html .= '</a>';
-
-			 		echo $html;
-
-			 		// Mark that we've discovered at least one comment image
-			 		$has_comment_image = true;
-
-			 	} // end if
-
-		 	} // end foreach
-
-		 } // end if
-
-	 } // end post_comment_images
 
 
 	 /**
@@ -744,9 +690,9 @@ class Comment_Image_Reloaded {
 	 *
 	 * @param	$comment	The content of the comment.
 	 */
-	function display_comment_image( $comments ) {
+	function display_comment_image( $comments, $pid ) {
 
-		if( count( $comments ) < 1){
+		if( count( $comments ) < 1 ){
 			return $comments;
 		}
 
