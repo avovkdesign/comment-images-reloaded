@@ -58,13 +58,13 @@ All new abilities and improvements are implemented using standard abilities of C
 
 == Frequently Asked Questions ==
 
-= Как вывести поле для вставки картинки вручную? =
-Поле для вставки картинки автоматичсеки выводится после кнопки 'Отправить комментарий'. 
-Вы можете расположить его в любом другом месте формы на свое усмотрение, используя специальные функции. Для этого нужно: 
-1. В настройках плагина отметить галочкой опцию Поле вставки изображения (это отключает автоматичсекий вывод) 
-1. В своем шаблоне формы в нужном месте вызать одну из следующих функций: 
- * чтобы вывести HTML код: if (function_exists("the_cir_upload_field")) { the_cir_upload_field(); } 
- * чтобы получить переменную с HTML кодом: if (function_exists("get_cir_upload_field")) { get_cir_upload_field(); }
+= How to display field for picture inserting manually? =
+Image insert field is automatically displayed after button 'Submit comment'
+You can place it in any form place using special functions. To do this:
+1. Tick option in plugin settings image insert field (it disables automatic display)
+1. Call one of the following functions in your form template in necessary place:
+ * To display HTML code: `if (function_exists("the_cir_upload_field")) { the_cir_upload_field(); }`
+ * To get variable with HTML code: `if (function_exists("get_cir_upload_field")) { get_cir_upload_field(); }`
 
 
 == Screenshots ==
@@ -78,8 +78,8 @@ All new abilities and improvements are implemented using standard abilities of C
 == Changelog ==
 
 = 2.1.4 =
-* new: removed Comment Images Reloaded column for admin posts page
-* fix: correct working auto url feature in themes without supporting html5 comment-list
+* new: removed column with Comment Images Reloaded image on posts page in admin  
+* fix: correct work of auto insert url link for themes without html5 support for comment-list
 
 = 2.1.3 =
 * fix: correct working auto url feature
