@@ -15,17 +15,20 @@
             if ("" !== e.trim(e(this).val())) {
                 var t, n;
                 t = e(this).val().split(".");
+                console.log(t);
                 n = t[t.length - 1].toString().toLowerCase();
+                console.log(n);
                 if ("png" === n || "gif" === n || "jpg" === n || "jpeg" === n) {
                     e("#comment-image-reloaded-error").hide()
                 } else {
-                    e("#comment-image-reloaded-error").html(cm_imgs.fileTypeError).show();
+                    e("#comment-image-reloaded-error").html(cm_imgs.fileTypeError)
+                        .css( { 'color':'#bb0404', 'font-style':'italic'} )
+                        .show();
                     e(this).val("");
                     return
                 }
 
                 if (window.FileReader && window.File && window.FileList && window.Blob) {
-
                     // console.log( this.files[0].size );
                     // console.log( cm_imgs.limitFileSize );
                     // console.log( cm_imgs.limitFileSize / 1048576 + ' MB' );
@@ -35,6 +38,17 @@
                     } else {
                         e("#comment-image-reloaded-error")
                             .html( cm_imgs.fileSizeError + ' ' + parseInt(cm_imgs.limitFileSize / 1048576) + " MB")
+                            .css( { 'color':'#bb0404', 'font-style':'italic'} )
+                            .show();
+                        e(this).val("");
+                        return
+                    }
+
+                    if(cm_imgs.limitFileCount >= this.files.length){
+                        e("#comment-image-reloaded-error").hide();
+                    } else {
+                        e("#comment-image-reloaded-error")
+                            .html(cm_imgs.fileCountError + ' ' + parseInt(cm_imgs.limitFileCount))
                             .css( { 'color':'#bb0404', 'font-style':'italic'} )
                             .show();
                         e(this).val("");

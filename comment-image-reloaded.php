@@ -5,9 +5,10 @@
  *	Plugin URI: http://wp-puzzle.com/comment-images-reloaded/
  *  Author: WP Puzzle 
  *  Author URI: http://wp-puzzle.com/
- *	Version: 2.1.4
+ *	Version: 2.2
  * ==================================================================================================== */
 
+define( "CIR_PLUGIN_PATH", plugin_dir_path(__FILE__) );
 
 // If this file is called directly, abort
 if ( ! defined( 'WPINC' ) ) {

@@ -77,6 +77,15 @@ You can place it in any form place using special functions. To do this:
 
 == Changelog ==
 
+= 2.2 =
+
+* Refactor all code
+* Более одного файла можно прикрепить к комментарию
+* Добавлена дополнительная настройка для выбора количества загружаемых файлов за один раз
+* Добавлена кнопка импорта изображений из плагина Comment Attachment
+* Проверена работа плагина на версии WordPress 4.5
+
+
 = 2.1.4 =
 * new: removed column with Comment Images Reloaded image on posts page in admin  
 * fix: correct work of auto insert url link for themes without html5 support for comment-list

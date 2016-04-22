@@ -1,14 +1,24 @@
 jQuery(function($){
 
-	$('#convert_images').click(function(e){
+	$('#convert_images, #convert_CA_images').click(function(e){
 		e.preventDefault();
-		var answer = my_alert();
+        var answer,
+            action;
+
+        if( $(this).attr('data-action') == 'CI'){
+            answer = my_CI_alert();
+            action = "convert_CI";
+        }else {
+            answer = my_CA_alert();
+            action = "convert_CA"
+        }
+
 		if(answer){
 			$.post(
                 cmr_reloaded_ajax_object.ajax_url, 
 
                 {
-                    action: "convert_img",
+                    action: action,
                 },
 
                 function(response) {
@@ -22,6 +32,7 @@ jQuery(function($){
     // delete images
     $('.delete-cid').click( function(e){
         e.preventDefault();
+        var wrap = $(this).parents('.ci-wrapper');
         var td = $(this).parents('td');
 
         if ( confirm(cmr_reloaded_ajax_object.before_delete_text) ) {
@@ -38,7 +49,9 @@ jQuery(function($){
                 function(response) {
                     console.log(response);
                     if ( 'true' == response ) {
-                        $(td).html( cmr_reloaded_ajax_object.after_delete_text );
+                        $(wrap).html( cmr_reloaded_ajax_object.after_delete_text );
+                        $(td).find('.ci-deleted').remove();
+                        $(wrap).addClass('ci-deleted');
                     }
                 }
             );
