@@ -246,7 +246,6 @@ class Comment_Image_Reloaded {
 			if ( isset(self::$options['image_zoom']) && 'enable' == self::$options['image_zoom'] ) {
 
 				$jsfile = 'js/cir_andzoom.min.js';
-
 				// check jQuery version, magnific required jQuery 1.7.2+
         		if ( ( version_compare( '1.7.2', $wp_scripts->registered['jquery']->ver ) == 1 ) && !is_admin() ) {
                 	wp_deregister_script('jquery'); 
@@ -311,30 +310,6 @@ class Comment_Image_Reloaded {
 		} // end if
 
 	} // end add_admin_scripts
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

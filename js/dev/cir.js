@@ -21,7 +21,6 @@
                 }
 
                 if (window.FileReader && window.File && window.FileList && window.Blob) {
-                    console.log(SDFSDFDSF);
                     // console.log( this.files[0].size );
                     // console.log( cm_imgs.limitFileSize );
                     // console.log( cm_imgs.limitFileSize / 1048576 + ' MB' );

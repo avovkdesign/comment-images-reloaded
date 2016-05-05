@@ -57,7 +57,7 @@
                 }
 
             }
-        })
+        });
 
 		// Initialize popup as usual
 		e('.cir-image-link').magnificPopup({
