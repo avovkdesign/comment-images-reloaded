@@ -3,7 +3,7 @@ Contributors: wppuzzle, egolacrima
 Tags: comment, image, attachment, images, comments, attachments, image zoom
 Donate link: http://avovkdesign.com/bymecoffee
 Requires at least: 3.2
-Tested up to: 4.4.2
+Tested up to: 4.5.1
 Stable tag: 2.1.4
 License: GPLv2 or later 
 
@@ -83,7 +83,7 @@ You can place it in any form place using special functions. To do this:
 * Более одного файла можно прикрепить к комментарию
 * Добавлена дополнительная настройка для выбора количества загружаемых файлов за один раз
 * Добавлена кнопка импорта изображений из плагина Comment Attachment
-* Проверена работа плагина на версии WordPress 4.5
+* Проверена работа плагина на версии WordPress 4.5.1
 
 
 = 2.1.4 =
