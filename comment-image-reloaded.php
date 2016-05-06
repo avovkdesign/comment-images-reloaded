@@ -18,6 +18,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 require_once( plugin_dir_path( __FILE__ ) . 'class-comment-image-reloaded.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'front/front-functions.php');
+
 $cir = Comment_Image_Reloaded::get_instance();
 
 
@@ -26,7 +28,7 @@ $cir = Comment_Image_Reloaded::get_instance();
 function the_cir_upload_field() {
 
 	global $cir, $post;
-	$cir->add_image_upload_form( $post->ID );
+	$cir->cir_front->add_image_upload_form( $post->ID );
 
 }
 
@@ -36,7 +38,7 @@ function get_cir_upload_field() {
 	global $cir, $post;
 
 	ob_start();
-	$cir->add_image_upload_form( $post->ID );
+	$cir->cir_front->add_image_upload_form( $post->ID );
 	$field = ob_get_contents();
 	ob_end_clean();	
 

@@ -79,11 +79,11 @@ You can place it in any form place using special functions. To do this:
 
 = 2.2 =
 
-* Refactor all code
-* Более одного файла можно прикрепить к комментарию
-* Добавлена дополнительная настройка для выбора количества загружаемых файлов за один раз
-* Добавлена кнопка импорта изображений из плагина Comment Attachment
-* Проверена работа плагина на версии WordPress 4.5.1
+* All code was refactored
+* You can attach more than one file to comment
+* Added additional customization for selecting number of uploading files at one time
+* Added image import button from plugin Comment Attachment
+* Checked work of plugin on version WordPress 4.5
 
 
 = 2.1.4 =
