@@ -174,7 +174,7 @@ class CIR_MetaBox {
 		if( 'comment-image-reloaded' == strtolower( $column_name ) ) {
 
 			$comment_image_data = get_comment_meta( $comment_id, 'comment_image_reloaded', true );
-			if(!is_array($comment_image_data)){
+			if(!is_array($comment_image_data) && !empty($comment_image_data)){
 				$buf = $comment_image_data;
 				$comment_image_data = array();
 				$comment_image_data[0] = $buf;

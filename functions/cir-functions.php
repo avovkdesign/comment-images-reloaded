@@ -29,23 +29,36 @@ class CIR_Functions{
 		$cid = intval(get_comment_ID());
 		if ( is_numeric($cid) ) {
 			$new_commtext = get_comment_text();
-			preg_match( '%(<p[^>]*class=["|\']comment-image-reloaded["|\'][^>]*>)(.*?)(<\/p>)%', $new_commtext, $matches_in_new );
-			preg_match( '%(<p[^>]*class=["|\']comment-image-reloaded["|\'][^>]*>)(.*?)(<\/p>)%', $comment_text, $matches_in_old );
+			preg_match_all( '%(<p[^>]*class=["|\']comment-image-reloaded["|\'][^>]*>)(.*?)(<\/p>)%', $new_commtext, $matches_in_new );
+			preg_match_all( '%(<p[^>]*class=["|\']comment-image-reloaded["|\'][^>]*>)(.*?)(<\/p>)%', $comment_text, $matches_in_old );
 // echo '<pre>';
-// var_dump($matches_in_new);
+// var_dump($matches_in_new[0]);
 // echo '<hr>';
-// var_dump($matches_in_old);
+//var_dump($matches_in_old);
 // echo '</pre>';
 
 			// if in filtered contentent image not exists and it exists in get_comment_text()
-			if ( empty($matches_in_old) && !empty($matches_in_new) ) {
-				$comment_text = $comment_text . $matches_in_new[0];
+			if ( $this->is_empty_array($matches_in_old) && !empty($matches_in_new) ) {
+				foreach($matches_in_new[0] as $new_match){
+					//var_dump($comment_text);
+					$comment_text .= $new_match;
+				}
 				// print_r($matches_in_new);
 			}
 		}
 
 		return $comment_text;
 
+	}
+
+
+	private function is_empty_array($old){
+		foreach($old as $o){
+			if(!empty($o)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 
