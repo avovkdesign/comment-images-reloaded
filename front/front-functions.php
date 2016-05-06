@@ -245,7 +245,6 @@ class CIR_Front{
 
 			// Loop through each comment...
 			foreach( $comments as $comment ) {
-
 				// ...and if the comment has a comment image...
 				if( !empty($metadata_ids[$comment->comment_ID]) ) {
 
@@ -253,7 +252,6 @@ class CIR_Front{
 					//$comment_image = get_comment_meta( $comment->comment_ID, 'comment_image_reloaded', true );
 					$img_url = array();
 					$img_url_out = array();
-
 					// Size of the image to show (thumbnail, large, full, medium)
 					if ( array_key_exists($comment->comment_ID,$metadata_url) && !empty($metadata_url[$comment->comment_ID]) ){
 
@@ -262,6 +260,7 @@ class CIR_Front{
 						foreach($img_url as $id => $img) {
 							if(!is_numeric($id)){
 								$old_meta = get_comment_meta($comment->comment_ID,'comment_image_reloaded',true);
+								$old_meta = is_array($old_meta) ? $old_meta[0] : $old_meta;
 								$buf = $img_url;
 								$img_url = array();
 								$img_url[$old_meta] = $buf;
@@ -300,8 +299,7 @@ class CIR_Front{
 							}
 
 						}
-
-						add_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url',$img_url);
+						update_comment_meta( $comment->comment_ID, 'comment_image_reloaded_url',$img_url);
 
 						foreach($img_url as $id => $imgURL) {
 							if (!empty($imgURL[$size]))
@@ -318,33 +316,33 @@ class CIR_Front{
 						$comment->comment_content .= '<div class="comment-image-box">';
 					}
 
-						// ...and render it in a paragraph element appended to the comment
-						if (isset(self::$options['image_zoom']) && 'enable' == self::$options['image_zoom']) {
+					// ...and render it in a paragraph element appended to the comment
+					if (isset(self::$options['image_zoom']) && 'enable' == self::$options['image_zoom']) {
 
 
 
-							foreach($img_url_out as $id => $img_out) {
-								// get full image URI
-								preg_match('/src=[\'|\"]([^\'\"]*)/i', $img_url[$id]['full'], $matches);
+						foreach($img_url_out as $id => $img_out) {
+							// get full image URI
+							preg_match('/src=[\'|\"]([^\'\"]*)/i', $img_url[$id]['full'], $matches);
 
-								$comment->comment_content .= '<p class="comment-image-reloaded">';
-								if ($matches) {
-									$comment->comment_content .= '<a class="cir-image-link image-id-'.$id.'" href="' . $matches[1] . '">' . $img_out . '</a>';
-								} else {
-									$comment->comment_content .= $img_out;
-								}
-								$comment->comment_content .= '</p>';
-							}
-
-						} else {
-
-							foreach($img_url_out as $id => $img_out) {
-								$comment->comment_content .= '<p class="comment-image-reloaded">';
+							$comment->comment_content .= '<p class="comment-image-reloaded">';
+							if ($matches) {
+								$comment->comment_content .= '<a class="cir-image-link image-id-'.$id.'" href="' . $matches[1] . '">' . $img_out . '</a>';
+							} else {
 								$comment->comment_content .= $img_out;
-								$comment->comment_content .= '</p>';
 							}
-
+							$comment->comment_content .= '</p>';
 						}
+
+					} else {
+
+						foreach($img_url_out as $id => $img_out) {
+							$comment->comment_content .= '<p class="comment-image-reloaded">';
+							$comment->comment_content .= $img_out;
+							$comment->comment_content .= '</p>';
+						}
+
+					}
 
 					if(!empty($img_url_out)) {
 						$comment->comment_content .= '</div>';
@@ -362,10 +360,14 @@ class CIR_Front{
 	} // end display_comment_image
 
 
-	private function is_empty_size(){
-
+	private function is_empty_array($old){
+		foreach($old as $o){
+			if(!empty($o)){
+				return false;
+			}
+		}
+		return true;
 	}
-
 
 	/**
 	 * Determines if the specified type if a valid file type to be uploaded.
@@ -377,9 +379,9 @@ class CIR_Front{
 
 		$type = strtolower( trim ( $type ) );
 		return 	$type == 'png' ||
-		          $type == 'gif' ||
-		          $type == 'jpg' ||
-		          $type == 'jpeg';
+		$type == 'gif' ||
+		$type == 'jpg' ||
+		$type == 'jpeg';
 
 	} // end is_valid_file_type
 
