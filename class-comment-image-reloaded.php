@@ -53,12 +53,15 @@ class Comment_Image_Reloaded {
 	 */
     private $limit_file_size;
 
+	public $cir_front;
+
 	/**
 	 * Return an instance of this class.
 	 *
 	 * @since     1.0.0
 	 *
 	 * @return    object    A single instance of this class.
+	 *
 	 */
 	public static function get_instance() {
 
@@ -124,6 +127,7 @@ class Comment_Image_Reloaded {
 			//FRONT **********************************************************************************/
 			require_once (plugin_dir_path(__FILE__).'front/front-functions.php');
 			$front = new CIR_Front(self::$options,$this->limit_file_size,$this->limit_files_count);
+			$this->cir_front = $front;
 			// Add the Upload input to the comment form
             $autofield = ( isset(self::$options['auto_echo']) && 'disable' == self::$options['auto_echo'] ) ? false : true; 
 			if ( $autofield ) {
@@ -193,6 +197,7 @@ class Comment_Image_Reloaded {
 		$limit = min( $phpini_limit, self::MBtoB($opt) ); // set limit
 		return $limit;
 	}
+
 
 
 	 /**
