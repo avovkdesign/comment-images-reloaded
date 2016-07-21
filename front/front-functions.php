@@ -8,11 +8,14 @@ class CIR_Front{
 
 	private $files_count_limit;
 
+	private $needs_to_approve;
 
-	public function __construct($options,$limit_filesize,$limit_files_count) {
+
+	public function __construct($options,$limit_filesize,$limit_files_count,$needs_to_approve) {
 		self::$options = $options;
 		$this->limit_filesize = $limit_filesize;
 		$this->files_count_limit = $limit_files_count;
+		$this->needs_to_approve = $needs_to_approve;
 	}
 
 	/**
@@ -146,10 +149,40 @@ class CIR_Front{
 					// $id = media_handle_sideload( $_FILES[ $comment_image_id ], $post_id);
 					$id = media_handle_sideload( $img, $post_id );
 
+
 					// Set post meta about this image. Need the comment ID and need the path.
 					//---if( FALSE === $comment_image_file['error'] ) {
+//тут запишим alt title description
 					if ( ! is_wp_error( $id ) ) {
 						$img_ids[] = $id;
+
+						$options_plagin = get_option('CI_reloaded_settings');
+						if(isset($options_plagin['image_auto_data']) && $options_plagin['image_auto_data'] == 'checked') {
+
+							$current_user = _wp_get_current_user();
+							$alt = __('Upload', 'comment-images-reloaded') . ' ' . $current_user->display_name;
+							$title = __('Upload', 'comment-images-reloaded') . ' ' . $current_user->display_name;
+							$description = '';
+
+							if(isset($options_plagin['patern_alt'])) {
+								$alt = self::set_attr_image($current_user, $options_plagin['patern_alt'], $img['name'], $_POST['comment_post_ID']);
+								update_post_meta($id, '_wp_attachment_image_alt', $alt);
+							}
+
+							if(isset($options_plagin['patern_title']))
+								$title = self::set_attr_image($current_user, $options_plagin['patern_title'], $img['name'], $_POST['comment_post_ID']);
+
+							if (isset($options_plagin['patern_description']))
+								$description = self::set_attr_image($current_user, $options_plagin['patern_title'], $img['name'], $_POST['comment_post_ID'], $_POST['comment']);
+
+							$data_image = array();
+							$data_image['ID'] = $id;
+							$data_image['post_title'] = $title;
+							$data_image['post_content'] = $description; //;
+
+							wp_update_post($data_image);
+
+						}
 						// Since we've already added the key for this, we'll just update it with the file.
 
 
@@ -166,17 +199,66 @@ class CIR_Front{
 			add_comment_meta( $comment_id, 'comment_image_reloaded', $img_ids );
 		}
 
-		$commentarr                     = array();
-		$commentarr['comment_ID']       = $comment_id;
-		$commentarr['comment_approved'] = 1;
+		if ( TRUE === $this->needs_to_approve ) {
 
-		wp_update_comment( $commentarr );
+			$commentarr = array();
+			$commentarr['comment_ID'] = $comment_id;
+			$commentarr['comment_approved'] = 1;
+
+			wp_update_comment($commentarr);
+		}
 
 	} // end save_comment_image
 
 
+//-------------------------------------------------------------------
+
+	/*function set_attr_image_description($content, $count){
+		$res = '';
+		$count = intval($count);
+		if( strlen($content) < $count)
+			return '';
+
+		$end = strpos($content, ' ', $count);
+		if($end === false)
+			return $content;
 
 
+		$res = substr($content, 0 , $end);
+
+		return $res;
+	}*/
+
+	function set_attr_image( $user, $options_plagin, $name, $post_id, $content = null){
+		$arr_alt = explode('%', $options_plagin);
+		$alt ='';
+		if($arr_alt){
+
+			foreach ($arr_alt as $str){
+				if ('commentator_name' == $str){
+					$alt.= $user->display_name;
+				}
+				else if ('data' == $str){
+					$alt .= current_time("F j, Y, g:i a");
+				}
+				else if ('file_name' == $str){
+					$alt .= $name;
+				}
+				else if ('post_title' == $str){
+					$alt .= get_the_title($post_id);
+				}
+                else if ('comment_text' == $str){
+                    $alt .= $content;
+                }
+				else {
+					$alt .= $str;
+				}
+			}
+		}
+		return $alt;
+	}
+
+//---------------------------------------------------------------
 
 	/**
 	 * Appends the image below the content of the comment.
@@ -184,6 +266,8 @@ class CIR_Front{
 	 * @param	$comment	The content of the comment.
 	 */
 	function display_comment_image( $comments, $pid ) {
+
+		//var_dump(gmdate("F j, Y, g:i a", time()+ 3600*( date("Z")+date("I"))));
 
 		if( count( $comments ) < 1 ){
 			return $comments;
@@ -294,8 +378,11 @@ class CIR_Front{
 							$img_ids = unserialize($metadata_ids[ $comment->comment_ID ]);
 
 							foreach($img_ids as $imgID){
-								$img_url[$imgID][ $_size ] = wp_get_attachment_image( $imgID, $_size );
-								$img_url[$imgID]['full'] = wp_get_attachment_image($imgID, 'full');
+//title
+								$title = get_the_title($imgID);
+
+								$img_url[$imgID][ $_size ] = wp_get_attachment_image( $imgID, $_size, false, array('title'=>$title) );
+								$img_url[$imgID]['full'] = wp_get_attachment_image($imgID, 'full', false, array('title'=>$title));
 							}
 
 						}
@@ -327,6 +414,7 @@ class CIR_Front{
 
 							$comment->comment_content .= '<p class="comment-image-reloaded">';
 							if ($matches) {
+
 								$comment->comment_content .= '<a class="cir-image-link image-id-'.$id.'" href="' . $matches[1] . '">' . $img_out . '</a>';
 							} else {
 								$comment->comment_content .= $img_out;

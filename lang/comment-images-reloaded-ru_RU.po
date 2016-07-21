@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: comment-images-ru_RU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-21 15:27+0300\n"
-"PO-Revision-Date: 2016-04-21 15:39+0300\n"
+"POT-Creation-Date: 2016-07-21 16:49+0300\n"
+"PO-Revision-Date: 2016-07-21 16:49+0300\n"
 "Last-Translator: Alexandra Vovk <avovkdesign@gmail.com>\n"
 "Language-Team: WP Puzzle <wppuzzle@gmail.com>\n"
 "Language: ru_RU\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -89,11 +89,71 @@ msgstr "Поле вставки изображения"
 msgid "Disable for all"
 msgstr "Отключить для всех"
 
-#: ../admin/options.php:160 ../admin/options.php:166
+#: ../admin/options.php:152
+msgid "Metadata of images"
+msgstr "Мета данные изображений"
+
+#: ../admin/options.php:160
+msgid "Template to fill ALT attributes"
+msgstr "Шаблон для заполнения атрибута ALT"
+
+#: ../admin/options.php:168
+msgid "Template to fill TITLE attribute"
+msgstr "Шаблон для заполнения атрибута TITLE"
+
+#: ../admin/options.php:176
+msgid "Template to fill DESCRIPTION attribute"
+msgstr "Шаблон для заполнения атрибута DESCRIPTION"
+
+#: ../admin/options.php:197
+msgid "Automatically fill in metadata for uploaded files by templates"
+msgstr "Автоматически заполнять мета данные для загружаемых файлов по шаблонам"
+
+#: ../admin/options.php:199
+msgid "Use substitutions:"
+msgstr "Используйте подстановки:"
+
+#: ../admin/options.php:200
+msgid " - commentator name"
+msgstr " - имя комментатора"
+
+#: ../admin/options.php:201
+msgid " - publication data of comment and images"
+msgstr " - дата публикации комментария и изображений"
+
+#: ../admin/options.php:202
+msgid "  - file name"
+msgstr " - имя файла"
+
+#: ../admin/options.php:203
+msgid "  - title of commented article"
+msgstr " - название комментируемой статьи"
+
+#: ../admin/options.php:204
+msgid " - comment text to which image is published"
+msgstr " - текст комментария, к которому опубликована картинка"
+
+#: ../admin/options.php:210
+msgid "Comment text: %comment_text%"
+msgstr "Текст коментария: %comment_text%"
+
+#: ../admin/options.php:214 ../admin/options.php:222 ../admin/options.php:230
+msgid "Uploaded %commentator_name%"
+msgstr "Загрузил %commentator_name%"
+
+#: ../admin/options.php:218
+msgid "Photo belongs to post %post_title%"
+msgstr "Фото принадлежит посту %post_title%"
+
+#: ../admin/options.php:226
+msgid "Photo was uploaded %commentator_name%"
+msgstr "Photo was uploaded"
+
+#: ../admin/options.php:234 ../admin/options.php:240
 msgid "Import all images data"
 msgstr "Импортировать все данные картинок"
 
-#: ../admin/options.php:161
+#: ../admin/options.php:235
 msgid ""
 "You can import data from original Comment Images plugin. This will not "
 "remove original data"
@@ -101,7 +161,7 @@ msgstr ""
 "Вы можете импортировать изображения из Comment Images. Оригинальные "
 "изображения останутся."
 
-#: ../admin/options.php:167
+#: ../admin/options.php:241
 msgid ""
 "You can import data from Comments Attachment plugin. This will not remove "
 "original data "
@@ -109,11 +169,11 @@ msgstr ""
 "Вы можете импортировать изображения из Comment Attachment. Оригинальные "
 "изображения останутся."
 
-#: ../admin/options.php:203
+#: ../admin/options.php:277
 msgid "Original size of the image"
 msgstr "Оригинальный размер изображения"
 
-#: ../admin/options.php:208
+#: ../admin/options.php:282
 msgid ""
 "Converting all images from Comment Images to Comment Images Reloaded. "
 "Disable old plugin to avoid dublicating the images in comments. You can "
@@ -123,7 +183,7 @@ msgstr ""
 "Отключите старый плагин для предотвращения дублирования изображений в "
 "комментариях. Вы всегда сможете вернуться к старому плагину"
 
-#: ../admin/options.php:211
+#: ../admin/options.php:285
 msgid ""
 "Converting all images from Comment Attachment to Comment Images Reloaded. "
 "Disable old plugin to avoid dublicating the images in comments. You can "
@@ -133,23 +193,23 @@ msgstr ""
 "Отключите старый плагин для предотвращения дублирования изображений в "
 "комментариях. Вы всегда сможете вернуться к старому плагину"
 
-#: ../admin/options.php:230
+#: ../admin/options.php:304
 msgid " bytes"
 msgstr " байт"
 
-#: ../admin/options.php:231
+#: ../admin/options.php:305
 msgid "Maximum allowed all files sizes "
 msgstr "Максимальный размер всех загружаемых файлов "
 
-#: ../admin/options.php:231
+#: ../admin/options.php:305
 msgid "php.ini settings"
 msgstr "настройки php.ini"
 
-#: ../admin/options.php:253
+#: ../admin/options.php:327
 msgid "Enter how many images can be uploaded at a time"
 msgstr "Выберите сколько изображений загружать за один раз"
 
-#: ../admin/options.php:254
+#: ../admin/options.php:328
 #, php-format
 msgid ""
 "Maximum allowed number of files of selected size - %s files. php.ini settings"
@@ -157,26 +217,26 @@ msgstr ""
 "Максимально допустимое количество файлов к одному комментарию - %s. "
 "Настройки php.ini"
 
-#: ../admin/options.php:267 ../front/front-functions.php:51
+#: ../admin/options.php:341 ../front/front-functions.php:54
 msgid "Select an image for your comment (GIF, PNG, JPG, JPEG):"
 msgstr "Выберите изображение для вашего комментария (GIF, PNG, JPG, JPEG):"
 
-#: ../admin/options.php:270
+#: ../admin/options.php:344
 msgid "Enter custom title for file input field"
 msgstr ""
 "Укажите свой текст, который нужно показать перед полем добавления картинки"
 
-#: ../admin/options.php:286
+#: ../admin/options.php:360
 msgid "Enable image zoom on click (it work with Magnific Popup jQuery plugin)"
 msgstr ""
 "Включить увеличение (зум) картинок по клику (работает с jQuery скриптом "
 "Magnific)"
 
-#: ../admin/options.php:303
+#: ../admin/options.php:377
 msgid "Check it to hide author's link"
 msgstr "Отметьте эту галочку, чтобы скрыть авторскую ссылку"
 
-#: ../admin/options.php:304
+#: ../admin/options.php:378
 msgid ""
 "We place a small link under the image field, letting others know about our "
 "plugin. Thanks for your promotion!"
@@ -184,31 +244,31 @@ msgstr ""
 "Мы пазмещаем ссылку под полем добавления картинки, позволяя посетителям "
 "узнать о нашем плагине. Благодарим Вам за помощь в продвижении плагина! "
 
-#: ../admin/options.php:320
+#: ../admin/options.php:394
 msgid "Check it to disable automatic show file upload field"
 msgstr ""
 "Отметьте эту галочку, чтобы отключить автоматический вывод в форме "
 "комментария поля для загрузки картинки"
 
-#: ../admin/options.php:321
+#: ../admin/options.php:395
 msgid "For manual show input, place code into your template:"
 msgstr ""
 "Чтобы вручную вывести поле для загрузки картинки, вставьте следующий код в "
 "свой шаблон:"
 
-#: ../admin/options.php:322
+#: ../admin/options.php:396
 msgid "echo html"
 msgstr "печатает HTML"
 
-#: ../admin/options.php:323
+#: ../admin/options.php:397
 msgid "return value"
 msgstr "возвращает в переменную"
 
-#: ../admin/options.php:339
+#: ../admin/options.php:413
 msgid "Deactivate images for all posts"
 msgstr "Запретить добавление изображений для всех записей"
 
-#: ../class-comment-image-reloaded.php:225
+#: ../class-comment-image-reloaded.php:244
 msgid ""
 "<strong>Comment Images Notice:</strong> Unfortunately, your host does not "
 "allow uploads from the comment form. This plugin will not work for your host."
@@ -217,7 +277,7 @@ msgstr ""
 "сконфигурирован таким образом, что не позволяет сохранять файлы из формы "
 "комментирования. Плагин не будет работать на вашем сервере."
 
-#: ../class-comment-image-reloaded.php:265
+#: ../class-comment-image-reloaded.php:283
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an invalid image. If "
 "saved, this image will not display with your comment."
@@ -225,7 +285,7 @@ msgstr ""
 "Внимание! Вы пытаетесь загрузить неверное изображение, поэтому оно не будет "
 "прикреплено к вашему комментарию."
 
-#: ../class-comment-image-reloaded.php:266
+#: ../class-comment-image-reloaded.php:284
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload an image that is too "
 "large. If saved, this image will not be uploaded.<br />The maximum file size "
@@ -234,7 +294,7 @@ msgstr ""
 "Внимание! Вы пытаетесь загрузить слишком большой файл. При сохранении "
 "комментария, файл не будет прикреплен! Максимальный размер файла:"
 
-#: ../class-comment-image-reloaded.php:268
+#: ../class-comment-image-reloaded.php:286
 msgid ""
 "<strong>Heads up!</strong> You are attempting to upload too many images. If "
 "saved, this images will not be uploaded.<br />The maximum number of images "
@@ -244,16 +304,16 @@ msgstr ""
 "отправке коментария, файлы не будут загружены <br />Максимальное количество "
 "изображений: "
 
-#: ../class-comment-image-reloaded.php:290
+#: ../class-comment-image-reloaded.php:308
 msgid "Do you want to permanently delete an image attached to this comment?"
 msgstr ""
 "Вы хотите полностью удалить картинку, прикрепленную к этому комментарию?"
 
-#: ../class-comment-image-reloaded.php:291
+#: ../class-comment-image-reloaded.php:309
 msgid "Image deleted!"
 msgstr "Картинка удалена!"
 
-#: ../class-comment-image-reloaded.php:305
+#: ../class-comment-image-reloaded.php:323
 msgid ""
 "By doing this, you will toggle Comment Images for all posts on your blog. "
 "Are you sure you want to do this?"
@@ -261,15 +321,15 @@ msgstr ""
 "Сделав это, Вы отключите Comment Images Reloaded для всех записей на блоге. "
 "Вы точно хотите сделать это?"
 
-#: ../front/front-functions.php:97
+#: ../front/front-functions.php:100
 msgid "Error: Uploaded file is too large. <br/> Go back to: "
 msgstr "Ошибка! Загружаемый файл слишком большой.<br/> Вернуться:"
 
-#: ../front/front-functions.php:106
+#: ../front/front-functions.php:109
 msgid "Unknown error occurred while loading image.<br/> Go back to: "
 msgstr "Во время загрузки фала произошла неизвестная ошибка!<br/> Вернуться:"
 
-#: ../front/front-functions.php:113
+#: ../front/front-functions.php:116
 #, php-format
 msgid ""
 "You're trying to upload to many images at a time. Maximum number of images "
@@ -278,9 +338,13 @@ msgstr ""
 "Вы пытаетесь загрузить слишком много изображений. Максимальное количество "
 "изображений %s"
 
-#: ../front/front-functions.php:114
+#: ../front/front-functions.php:117
 msgid "Go back to: "
 msgstr "Вернуться:"
+
+#: ../front/front-functions.php:163 ../front/front-functions.php:164
+msgid "Upload"
+msgstr "Загрузил"
 
 #: ../functions/Importer-class.php:23 ../functions/Importer-class.php:141
 msgid "Updated "

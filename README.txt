@@ -1,10 +1,10 @@
 === Comment Images Reloaded ===
 Contributors: wppuzzle, egolacrima
 Tags: comment, image, attachment, images, comments, attachments, image zoom
-Donate link: http://avovkdesign.com/bymecoffee
+Donate link: https://www.liqpay.com/checkout/wppuzzle
 Requires at least: 3.2
-Tested up to: 4.5.1
-Stable tag: 2.2
+Tested up to: 4.5.3
+Stable tag: 2.2.1
 License: GPLv2 or later 
 
 Plugin allows users to add photos or images to their comments. Позволяет прикреплять фото к комментариям.
@@ -77,13 +77,16 @@ You can place it in any form place using special functions. To do this:
 
 == Changelog ==
 
+= 2.2.1 =
+
+* fix: comments were published without admin approval
+
 = 2.2 =
 
-* All code was refactored
 * You can attach more than one file to comment
 * Added additional customization for selecting number of uploading files at one time
 * Added image import button from plugin Comment Attachment
-* Checked work of plugin on version WordPress 4.5
+* Checked work of plugin on version WordPress 4.5.1
 
 
 = 2.1.4 =

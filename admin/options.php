@@ -147,15 +147,89 @@ class CIR_Options{
 			'CI_reloaded_checkbox_settings'
 		);
 
+		add_settings_field(
+			'disable_auto_data',
+			__( 'Metadata of images', 'comment-images-reloaded' ),
+			array( 'CIR_Options', 'CI_disableCIR_auto'),
+			'CI_reloaded_settings_page',
+			'CI_reloaded_checkbox_settings'
+		);
 
+        add_settings_field(
+            'patern_alt',
+            __( 'Template to fill ALT attributes', 'comment-images-reloaded' ),
+            array( 'CIR_Options', 'CI_pateternCIR_alt'),
+            'CI_reloaded_settings_page',
+            'CI_reloaded_checkbox_settings'
+        );
 
+        add_settings_field(
+            'patern_title',
+            __( 'Template to fill TITLE attribute', 'comment-images-reloaded' ),
+            array( 'CIR_Options', 'CI_pateternCIR_title'),
+            'CI_reloaded_settings_page',
+            'CI_reloaded_checkbox_settings'
+        );
+
+        add_settings_field(
+            'patern_description',
+            __( 'Template to fill DESCRIPTION attribute', 'comment-images-reloaded' ),
+            array( 'CIR_Options', 'CI_pateternCIR_description'),
+            'CI_reloaded_settings_page',
+            'CI_reloaded_checkbox_settings'
+        );
 
 	}
+
 
 
 	//
 	// Render convert button
 	//
+	public static function CI_disableCIR_auto(){
+//readonly="readonly"
+		echo '<script type="text/javascript">jQuery(document).ready(function($) {if(!$("#autoimg").prop("checked")){$("#autodesc").attr("readonly","readonly");$("#autotitle").attr("readonly","readonly");$("#autoalt").attr("readonly","readonly");}$("#autoimg").click(function () {if(!$("#autoimg").prop("checked")){$("#autodesc").attr("readonly","readonly");$("#autotitle").attr("readonly","readonly");$("#autoalt").attr("readonly","readonly");}else {$("#autodesc").removeAttr("readonly");$("#autotitle").removeAttr("readonly");$("#autoalt").removeAttr("readonly");}});});</script>';
+
+		$check = '';
+		if(isset(self::$options['image_auto_data']))
+			$check = self::$options['image_auto_data'];
+
+		echo '<label><input type="checkbox" id="autoimg" '.$check.' name="CI_reloaded_settings[image_auto_data]" value="checked" />'. __( 'Automatically fill in metadata for uploaded files by templates', 'comment-images-reloaded' ) . '</label> ';
+
+		echo '<p class="description">'. __( 'Use substitutions:' , 'comment-images-reloaded' ) . '</p>';
+		echo '<p class="description">%commentator_name%'. __( ' - commentator name' , 'comment-images-reloaded' ).'</p>';
+		echo '<p class="description">%data%'. __( ' - publication data of comment and images' , 'comment-images-reloaded' ).'</p>';
+		echo '<p class="description">%file_name%'. __( '  - file name' , 'comment-images-reloaded' ).'</p>';
+		echo '<p class="description">%post_title%'. __( '  - title of commented article' , 'comment-images-reloaded' ).'</p>';
+		echo '<p class="description">%comment_text%'. __( ' - comment text to which image is published' , 'comment-images-reloaded' ).'</p>';
+
+	}
+
+    public static function CI_pateternCIR_description(){
+		//echo '<pre>'; var_dump(self::$options); echo '</pre>';
+        $val = __('Comment text: %comment_text%','comment-images-reloaded');
+        if(isset(self::$options['patern_description']))
+            $val = self::$options['patern_description'];
+
+        echo '<label><textarea style="width: 80%;" id="autodesc"   name="CI_reloaded_settings[patern_description]" placeholder="'.__('Uploaded %commentator_name%','comment-images-reloaded').'" />'. $val .'</textarea></label>';
+    }
+
+    public static function CI_pateternCIR_title(){
+        $val = __('Photo belongs to post %post_title%','comment-images-reloaded');
+        if(isset(self::$options['patern_title']))
+            $val = self::$options['patern_title'];
+
+        echo '<label><textarea style="width: 80%;" id="autotitle"  name="CI_reloaded_settings[patern_title]" placeholder="'.__('Uploaded %commentator_name%','comment-images-reloaded').'" />'. $val .'</textarea></label>';
+    }
+
+    public static function CI_pateternCIR_alt(){
+        $val = __('Photo was uploaded %commentator_name%','comment-images-reloaded');
+        if(isset(self::$options['patern_alt']))
+            $val = self::$options['patern_alt'];
+
+        echo '<label><textarea style="width: 80%;" id="autoalt"  name="CI_reloaded_settings[patern_alt]" placeholder="'.__('Uploaded %commentator_name%','comment-images-reloaded').'" />'. $val .'</textarea></label>';
+    }
+
 	public static function CI_reloaded_convert_images(){
 		$html = '<input type="button" class="button" id="convert_images" data-action="CI" value="' . __( 'Import all images data', 'comment-images-reloaded' ) . '">';
 		$html .= '<p class="description">'. __( 'You can import data from original Comment Images plugin. This will not remove original data', 'comment-images-reloaded' ) .'</p>';
