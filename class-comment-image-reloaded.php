@@ -15,6 +15,16 @@ class Comment_Image_Reloaded {
 	/*--------------------------------------------*
 	 * Constructor
 	 *--------------------------------------------*/
+
+	/**
+	 * Whether or not the image needs to be approved before displaying
+	 * it to the user.
+	 *
+	 * @since    1.17.0
+	 * @access   private
+	 * @var      bool
+	 */
+	private $needs_to_approve;
 	
 	/**
 	 * Instance of this class.
@@ -41,6 +51,8 @@ class Comment_Image_Reloaded {
 	 * @access   private
 	 * @var      int
 	 */
+
+
 
 	private  $limit_files_count;
 
@@ -95,6 +107,8 @@ class Comment_Image_Reloaded {
 			//set filesize limit
 			$this->limit_file_size = $this->set_limit_filesize();
 
+			$this->needs_to_approve = FALSE;
+
 			$this->limit_files_count = !empty(self::$options['max_img_count']) ? self::$options['max_img_count'] : 5;
 
 			// Go ahead and enable comment images site wide
@@ -126,7 +140,7 @@ class Comment_Image_Reloaded {
 
 			//FRONT **********************************************************************************/
 			require_once (plugin_dir_path(__FILE__).'front/front-functions.php');
-			$front = new CIR_Front(self::$options,$this->limit_file_size,$this->limit_files_count);
+			$front = new CIR_Front(self::$options,$this->limit_file_size,$this->limit_files_count,$this->needs_to_approve);
 			$this->cir_front = $front;
 			// Add the Upload input to the comment form
             $autofield = ( isset(self::$options['auto_echo']) && 'disable' == self::$options['auto_echo'] ) ? false : true; 

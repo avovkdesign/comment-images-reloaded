@@ -8,11 +8,14 @@ class CIR_Front{
 
 	private $files_count_limit;
 
+	private $needs_to_approve;
 
-	public function __construct($options,$limit_filesize,$limit_files_count) {
+
+	public function __construct($options,$limit_filesize,$limit_files_count,$needs_to_approve) {
 		self::$options = $options;
 		$this->limit_filesize = $limit_filesize;
 		$this->files_count_limit = $limit_files_count;
+		$this->needs_to_approve = $needs_to_approve;
 	}
 
 	/**
@@ -166,11 +169,14 @@ class CIR_Front{
 			add_comment_meta( $comment_id, 'comment_image_reloaded', $img_ids );
 		}
 
-		$commentarr                     = array();
-		$commentarr['comment_ID']       = $comment_id;
-		$commentarr['comment_approved'] = 1;
+		if ( TRUE === $this->needs_to_approve ) {
 
-		wp_update_comment( $commentarr );
+			$commentarr = array();
+			$commentarr['comment_ID'] = $comment_id;
+			$commentarr['comment_approved'] = 1;
+
+			wp_update_comment($commentarr);
+		}
 
 	} // end save_comment_image
 
